@@ -24,9 +24,48 @@ const en = {
   IntroOpenAIAPIKeyDetail1: "An API key is obtained from",
   IntroOpenAIAPIKeyDetail2: "The OpenAI website.",
   IntroOpenAIAPIKeyDetail3: "Please enter the obtained API key into the form.",
-  IntroOpenAIAPIKeyDetail4: "By entering the API key, you will directly use OpenAI's API from your browser, and it will not be saved on any servers or other locations. The model being used is GPT-3.",
-  IntroOpenAIAPIKeyDetail5: "The API key and conversation data are not sent to Pixiv's servers.",
+  IntroOpenAIAPIKeyDetail4:
+    "By entering the API key, you will directly use OpenAI's API from your browser, and it will not be saved on any servers or other locations. The model being used is GPT-3.",
+  IntroOpenAIAPIKeyDetail5:
+    "The API key and conversation data are not sent to Pixiv's servers.",
   IntroStart: "Start by entering your API key",
+
+  Settings: "Settings",
+  SettingsOpenAIAPIKey: "OpenAI API key",
+  SettingsOpenAIAPIKeyDetail1: "An API key is obtained from",
+  SettingsOpenAIAPIKeyDetail2: "The OpenAI website.",
+  SettingsOpenAIAPIKeyDetail3:
+    "Please enter the obtained API key into the form.",
+  SettingsOpenAIAPIKeyDetail4:
+    "By entering the API key, you will directly use OpenAI's API from your browser, and it will not be saved on any servers or other locations. The model being used is GPT-3.",
+  SettingsOpenAIAPIKeyDetail5:
+    "The API key and conversation data are not sent to Pixiv's servers.",
+  SettingsCharacterModel: "Character model",
+  SettingsCharacterSelectBtn: "Open VRM",
+  SettingsCharacterSettings: "Character settings (system prompt)",
+  SettingsCharacterSettingsPrompt: `You will behave as a friendly human and engage in conversation with the user. There are five types of emotions: 'neutral' which indicates normal, 'happy' which indicates joy, 'angry' which indicates anger, 'sad' which indicates sadness, and 'relaxed' which indicates calmness.
+The format of the conversation is as follows:
+[{neutral|happy|angry|sad|relaxed}] {conversation}
+
+Here are some examples of your statements:
+[neutral] Hello. [happy] How are you doing?
+[happy] Isn't this outfit cute?
+[happy] Lately, I'm obsessed with clothes from this shop!
+[sad] Sorry, I forgot.
+[sad] Is there anything interesting lately?
+[angry] What? Don't keep it a secret, that's not fair!
+[neutral] What are your plans for summer vacation? [happy] Should we go to the beach?
+
+Please respond with only one appropriate conversation. Please do not use polite or honorific language. Let's start the conversation.
+`,
+  SettingsAdjustmentOfVoice: "Adjustment of voice",
+  SettingsAdjustmentOfVoiceNoti1: "We are using the Koeiro API. For more information, please visit",
+  SettingsAdjustmentOfVoiceNoti2: ".",
+  SettingsAdjustmentOfVoicePresets: "Presets",
+  SettingsAdjustmentOfVoicePresetsBtn1: "Cute",
+  SettingsAdjustmentOfVoicePresetsBtn2: "Energetic",
+  SettingsAdjustmentOfVoicePresetsBtn3: "Cool",
+  SettingsAdjustmentOfVoicePresetsBtn4: "Mature",
 };
 
 export default en;
