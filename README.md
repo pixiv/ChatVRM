@@ -13,6 +13,7 @@ The various features of ChatVRM mainly use the following technologies:
 - Generating spoken voice
   - [Koeiro API](http://koeiromap.rinna.jp/)
 - Displaying 3D characters
+  - [@pixiv/three-vrm](https://github.com/pixiv/three-vrm)
 
 ## Demo
 

@@ -35,7 +35,7 @@ git clone git@github.com:pixiv/ChatVRM.git
 npm install
 ```
 
-安装软件包后，使用以下命令启动开发 Web 服务器。
+安装软件包后，使用以下命令启动 Web 服务器。
 
 ```bash
 npm run dev
