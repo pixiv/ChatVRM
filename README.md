@@ -1,65 +1,70 @@
 # ChatVRM
 
-ChatVRMはブラウザで簡単に3Dキャラクターと会話ができるデモアプリケーションです。
+ChatVRM 是一个演示应用程序，可以在浏览器中轻松地与 3D 角色进行对话。
 
-VRMファイルをインポートしてキャラクターに合わせた声の調整や、感情表現を含んだ返答文の生成などを行うことができます。
+您可以导入 VRM 文件，调整声音以适应角色，并生成包含情感表达的回答文本等。
 
-ChatVRMの各機能は主に以下の技術を使用しています。
+ChatVRM 的各种功能主要使用以下技术：
 
-- ユーザーの音声の認識
-    - [Web Speech API(SpeechRecognition)](https://developer.mozilla.org/ja/docs/Web/API/SpeechRecognition)
-- 返答文の生成
-    - [ChatGPT API](https://platform.openai.com/docs/api-reference/chat)
-- 読み上げ音声の生成
-    - [Koeiro API](http://koeiromap.rinna.jp/)
-- 3Dキャラクターの表示
-    - [@pixiv/three-vrm](https://github.com/pixiv/three-vrm)
+- 用户语音识别
+- [Web Speech API(SpeechRecognition)](https://developer.mozilla.org/ja/docs/Web/API/SpeechRecognition)
+- 回答文本的生成
+- [ChatGPT API](https://platform.openai.com/docs/api-reference/chat)
+- 生成朗读语音
+- [Koeiro API](http://koeiromap.rinna.jp/)
+- 显示 3D 角色
+- [@pixiv/three-vrm](https://github.com/pixiv/three-vrm)
 
+## Demo
 
-## デモ
-
-GitHub Pagesでデモを公開しています。
+该项目已在 GitHub Pages 上发布了演示。
 
 [https://pixiv.github.io/ChatVRM](https://pixiv.github.io/ChatVRM)
 
+## 运行
 
-## 実行
-ローカル環境で実行する場合はこのリポジトリをクローンするか、ダウンロードしてください。
+如果要在本地运行该项目，请克隆或下载该存储库。
 
 ```bash
 git clone git@github.com:pixiv/ChatVRM.git
 ```
 
-必要なパッケージをインストールしてください。
+安装所需的软件包
+
 ```bash
 npm install
 ```
 
-パッケージのインストールが完了した後、以下のコマンドで開発用のWebサーバーを起動します。
+安装软件包后，使用以下命令启动开发 Web 服务器。
+
 ```bash
 npm run dev
 ```
 
-実行後、以下のURLにアクセスして動作を確認して下さい。
+启动后，请访问以下网址以确认其是否正常工作。
 
-[http://localhost:3000](http://localhost:3000) 
-
+[http://localhost:3000](http://localhost:3000)
 
 ---
 
-## ChatGPT API
+# ChatVRM API 文档
 
-ChatVRMでは返答文の生成にChatGPT APIを使用しています。
+ChatVRM 使用 ChatGPT API 生成响应消息。
 
-ChatGPT APIの仕様や利用規約については以下のリンクや公式サイトをご確認ください。
+请参考以下链接和官方网站以获取 ChatGPT API 的规格和使用条款。
 
 - [https://platform.openai.com/docs/api-reference/chat](https://platform.openai.com/docs/api-reference/chat)
 - [https://openai.com/policies/api-data-usage-policies](https://openai.com/policies/api-data-usage-policies)
 
-
 ## Koeiro API
-ChatVRMでは返答文の音声読み上げにKoeiro APIを使用しています。
 
-Koeiro APIの仕様や利用規約については以下のリンクや公式サイトをご確認ください。
+ChatVRM 使用 Koeiro API 进行响应消息的语音阅读。
+
+请参考以下链接和官方网站以获取 Koeiro API 的规格和使用条款。
 
 - [http://koeiromap.rinna.jp/](http://koeiromap.rinna.jp/)
+
+# 其它文档
+
+- [https://vrm.dev/](https://vrm.dev/)
+- [https://github.com/pixiv/three-vrm](https://github.com/pixiv/three-vrm)
