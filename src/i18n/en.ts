@@ -42,6 +42,10 @@ const en = {
     "By entering the API key, you will directly use OpenAI's API from your browser, and it will not be saved on any servers or other locations. The model being used is GPT-3.",
   SettingsOpenAIAPIKeyDetail5:
     "The API key and conversation data are not sent to Pixiv's servers.",
+  SettingsLanguage: "Language",
+  SettingsLanguageCN: "Chinese",
+  SettingsLanguageJP: "Japanese",
+  SettingsLanguageEN: "English",
   SettingsCharacterModel: "Character model",
   SettingsCharacterSelectBtn: "Open VRM",
   SettingsCharacterSettings: "Character settings (system prompt)",

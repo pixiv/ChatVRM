@@ -42,6 +42,10 @@ const jp = {
     "入力されたAPIキーで、ブラウザから直接OpenAIのAPIを利用しますので、サーバー等には保存されません。 なお、利用しているモデルはGPT-3です。",
   SettingsOpenAIAPIKeyDetail5:
     "APIキーや会話文はピクシブのサーバーに送信されません。",
+  SettingsLanguage: "言語",
+  SettingsLanguageCN: "中国語",
+  SettingsLanguageJP: "日本語",
+  SettingsLanguageEN: "英語",
   SettingsCharacterModel: "キャラクターモデル",
   SettingsCharacterSelectBtn: "VRMを開く",
   SettingsCharacterSettings: "キャラクター設定（システムプロンプト）",

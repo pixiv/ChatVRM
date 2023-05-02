@@ -6,7 +6,7 @@ import React, { useCallback, useContext, useRef, useState } from "react";
 import { Settings } from "./settings";
 import { ViewerContext } from "@/features/vrmViewer/viewerContext";
 import { AssistantText } from "./assistantText";
-import lang from "@/i18n";
+import { useI18n } from "@/components/I18nProvider";
 
 type Props = {
   openAiKey: string;
@@ -34,6 +34,7 @@ export const Menu = ({
   const [showChatLog, setShowChatLog] = useState(false);
   const { viewer } = useContext(ViewerContext);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const lang = useI18n()
 
   const handleChangeSystemPrompt = useCallback(
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -110,12 +111,6 @@ export const Menu = ({
               onClick={() => setShowChatLog(true)}
             />
           )}
-          <IconButton
-            iconName="24/Text"
-            label={lang.DaboardLanguage}
-            isProcessing={false}
-            onClick={() => setShowChatLog(true)}
-          />
         </div>
       </div>
       {showChatLog && <ChatLog messages={chatLog} />}

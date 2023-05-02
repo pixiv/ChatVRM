@@ -10,7 +10,8 @@ import {
   PRESET_D,
 } from "@/features/constants/koeiroParam";
 import { Link } from "./link";
-import lang from "@/i18n";
+import { setLan } from "@/i18n";
+import { useI18n } from "@/components/I18nProvider";
 
 type Props = {
   openAiKey: string;
@@ -36,6 +37,7 @@ export const Settings = ({
   onChangeKoeiroParam,
   onClickOpenVrmFile,
 }: Props) => {
+  const lang = useI18n();
   return (
     <div className="absolute z-40 h-full w-full bg-white/80 backdrop-blur ">
       <div className="absolute m-24">
@@ -74,6 +76,37 @@ export const Settings = ({
           </div>
           <div className="my-40">
             <div className="my-16 font-bold typography-20">
+              {lang.SettingsLanguage}
+            </div>
+            <div className="my-8">
+              <TextButton
+                onClick={() => {
+                  setLan("cn");
+                  location.reload();
+                }}
+                className="mx-4">
+                {lang.SettingsLanguageCN}
+              </TextButton>
+              <TextButton
+                onClick={() => {
+                  setLan("jp");
+                  location.reload();
+                }}
+                className="mx-4">
+                {lang.SettingsLanguageJP}
+              </TextButton>
+              <TextButton
+                onClick={() => {
+                  setLan("en");
+                  location.reload();
+                }}
+                className="mx-4">
+                {lang.SettingsLanguageEN}
+              </TextButton>
+            </div>
+          </div>
+          <div className="my-40">
+            <div className="my-16 font-bold typography-20">
               {lang.SettingsCharacterModel}
             </div>
             <div className="my-8">
@@ -86,7 +119,6 @@ export const Settings = ({
             <div className="my-16 font-bold typography-20">
               {lang.SettingsCharacterSettings}
             </div>
-
             <textarea
               value={systemPrompt}
               onChange={onChangeSystemPrompt}
@@ -99,7 +131,7 @@ export const Settings = ({
             <div>
               {lang.SettingsAdjustmentOfVoiceNoti1}
               <a
-                className="text-primary hover:text-primary-hover mx-4"
+                className="mx-4 text-primary hover:text-primary-hover"
                 target="_blank"
                 rel="noopener noreferrer"
                 href="http://koeiromap.rinna.jp">

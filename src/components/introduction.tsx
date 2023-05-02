@@ -1,6 +1,6 @@
 import { useState, useCallback } from "react";
 import { Link } from "./link";
-import lang from "@/i18n";
+import { useI18n } from "@/components/I18nProvider";
 
 type Props = {
   openAiKey: string;
@@ -8,6 +8,7 @@ type Props = {
 };
 export const Introduction = ({ openAiKey, onChangeAiKey }: Props) => {
   const [opened, setOpened] = useState(true);
+  const lang = useI18n();
 
   const handleAiKeyChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
