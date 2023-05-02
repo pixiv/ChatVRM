@@ -190,6 +190,16 @@ export default function Home() {
     setSystemPrompt(langs[lan].SettingsCharacterSettingsPrompt);
     setShowContent(true);
   }, []);
+
+  useEffect(() => {
+    const base64APIKey = localStorage.getItem("chatvrm_apikey") ?? "";
+    if (base64APIKey.length) {
+      const apiKey = atob(base64APIKey);
+      console.log('apiKey', apiKey)
+      setOpenAiKey(apiKey);
+    }
+  }, []);
+
   if (!showContent) return <></>;
   return (
     <I18nProvider value={lan}>

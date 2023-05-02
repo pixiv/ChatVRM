@@ -9,8 +9,7 @@ const cn = {
   IntroDetail:
     "您可以在浏览器中使用麦克风、文本输入和语音合成技术与3D角色进行交谈。您还可以更改角色模型（VRM），调整其个性设置并修改语音。",
   IntroTechnicalIntroduction: "技术介绍",
-  IntroTechnicalDetail1:
-    "使用",
+  IntroTechnicalDetail1: "使用",
   IntroTechnicalDetail2: "实现了3D模型的显示和操作，使用",
   IntroTechnicalDetail3: "进行对话生成，语音合成使用的是",
   IntroTechnicalDetail4: "。想了解更多细节可以参考我们的",
@@ -28,20 +27,21 @@ const cn = {
   IntroOpenAIAPIKeyDetail3: "获取。把获取到的 API Key 粘贴到上面的输入框中。",
   IntroOpenAIAPIKeyDetail4:
     "输入API密钥之后，您将直接从浏览器使用 OpenAI 的 API，它不会被保存在任何服务器或其他位置。所使用的模型是 GPT-3。",
-  IntroOpenAIAPIKeyDetail5:
-    "API Key 和对话数据不会被发送到 Pixiv 服务器。",
+  IntroOpenAIAPIKeyDetail5: "API Key 和对话数据不会被发送到 Pixiv 服务器。",
   IntroStart: "开始对话",
 
   Settings: "设置",
   SettingsOpenAIAPIKey: "OpenAI API key",
+  SettingsOpenAIAPISaveBtn: "保存",
+  SettingsOpenAIAPISaveNoti:
+    "如果选择保存在本地，数据将被保存在本地存储(localstorage)中。如果不知道为什么要保存，请不要保存。",
   SettingsOpenAIAPIKeyDetail1: "API Key 可以从",
   SettingsOpenAIAPIKeyDetail2: "Open AI 官网",
   SettingsOpenAIAPIKeyDetail3:
     "获取。把获取到的 API Key 粘贴到上面的输入框中。",
   SettingsOpenAIAPIKeyDetail4:
     "输入API密钥之后，您将直接从浏览器使用 OpenAI 的 API，它不会被保存在任何服务器或其他位置。所使用的模型是 GPT-3。",
-  SettingsOpenAIAPIKeyDetail5:
-    "API Key 和对话数据不会被发送到 Pixiv 服务器。",
+  SettingsOpenAIAPIKeyDetail5: "API Key 和对话数据不会被发送到 Pixiv 服务器。",
   SettingsLanguage: "语言",
   SettingsLanguageCN: "中文",
   SettingsLanguageJP: "日文",

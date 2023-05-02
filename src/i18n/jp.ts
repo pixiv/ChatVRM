@@ -34,6 +34,9 @@ const jp = {
 
   Settings: "設定",
   SettingsOpenAIAPIKey: "OpenAI API キー",
+  SettingsOpenAIAPISaveBtn: "ほぞんする",
+  SettingsOpenAIAPISaveNoti:
+    "ローカルに保存すると、localstorageに保存されます。保存する理由がわからない場合は、保存しないでください。",
   SettingsOpenAIAPIKeyDetail1: "APIキーは",
   SettingsOpenAIAPIKeyDetail2: "OpenAIのサイト",
   SettingsOpenAIAPIKeyDetail3:

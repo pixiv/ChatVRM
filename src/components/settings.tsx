@@ -60,6 +60,16 @@ export const Settings = ({
               value={openAiKey}
               onChange={onChangeAiKey}
             />
+            <TextButton
+              onClick={() => {
+                localStorage.setItem("chatvrm_apikey", btoa(openAiKey));
+              }}
+              className="ml-8  bg-secondary hover:bg-secondary-hover">
+              {lang.SettingsOpenAIAPISaveBtn}
+            </TextButton>
+            <div className="mt-4 font-bold text-secondary-hover">
+              {lang.SettingsOpenAIAPISaveNoti}
+            </div>
             <div className="mt-8">
               {lang.SettingsOpenAIAPIKeyDetail1}
               <Link

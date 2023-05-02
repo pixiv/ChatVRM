@@ -34,6 +34,8 @@ const en = {
 
   Settings: "Settings",
   SettingsOpenAIAPIKey: "OpenAI API key",
+  SettingsOpenAIAPISaveBtn: "Save",
+  SettingsOpenAIAPISaveNoti: "If you choose to save locally, the data will be saved in local storage. If you don't know why you save it, please do not save it.",
   SettingsOpenAIAPIKeyDetail1: "An API key is obtained from",
   SettingsOpenAIAPIKeyDetail2: "The OpenAI website.",
   SettingsOpenAIAPIKeyDetail3:
