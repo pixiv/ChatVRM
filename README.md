@@ -1,70 +1,72 @@
 # ChatVRM
 
-ChatVRM is a demonstration application that allows you to easily converse with 3D characters in your browser.
+[English](./README-EN.md) | [中文](./README.md) | [日本語](./README-JP.md)
 
-You can import VRM files, adjust the voice to fit the character, and generate response text that includes emotional expressions.
+ChatVRM 是一个演示应用程序，可以在浏览器中轻松地与 3D 角色进行对话。
 
-The various features of ChatVRM mainly use the following technologies:
+您可以导入 VRM 文件，调整声音以适应角色，并生成包含情感表达的回答文本等。
 
-- User speech recognition
+ChatVRM 的各种功能主要使用以下技术：
+
+- 用户语音识别
   - [Web Speech API(SpeechRecognition)](https://developer.mozilla.org/ja/docs/Web/API/SpeechRecognition)
-- Generating response text
+- 回答文本的生成
   - [ChatGPT API](https://platform.openai.com/docs/api-reference/chat)
-- Generating spoken voice
+- 生成朗读语音
   - [Koeiro API](http://koeiromap.rinna.jp/)
-- Displaying 3D characters
+- 显示 3D 角色
   - [@pixiv/three-vrm](https://github.com/pixiv/three-vrm)
 
 ## Demo
 
-This project has been published on GitHub Pages for demonstration.
+该项目已在 GitHub Pages 上发布了演示。
 
 [https://pixiv.github.io/ChatVRM](https://pixiv.github.io/ChatVRM)
 
-## Running
+## 运行
 
-To run this project locally, clone or download the repository.
+如果要在本地运行该项目，请克隆或下载该存储库。
 
 ```bash
 git clone git@github.com:pixiv/ChatVRM.git
 ```
 
-Install the required packages.
+安装所需的软件包
 
 ```bash
 npm install
 ```
 
-After installing the packages, start the development web server using the following command.
+安装软件包后，使用以下命令启动 Web 服务器。
 
 ```bash
 npm run dev
 ```
 
-Once started, please visit the following URL to confirm that it is working properly.
+启动后，请访问以下网址以确认其是否正常工作。
 
 [http://localhost:3000](http://localhost:3000)
 
 ---
 
-# ChatVRM API Documentation
+# ChatVRM API 文档
 
-ChatVRM uses the ChatGPT API to generate response messages.
+ChatVRM 使用 ChatGPT API 生成响应消息。
 
-Please refer to the following links and official website to obtain the specifications and terms of use for the ChatGPT API.
+请参考以下链接和官方网站以获取 ChatGPT API 的规格和使用条款。
 
 - [https://platform.openai.com/docs/api-reference/chat](https://platform.openai.com/docs/api-reference/chat)
 - [https://openai.com/policies/api-data-usage-policies](https://openai.com/policies/api-data-usage-policies)
 
 ## Koeiro API
 
-ChatVRM uses the Koeiro API for voice reading of response messages.
+ChatVRM 使用 Koeiro API 进行响应消息的语音阅读。
 
-Please refer to the following links and official website to obtain the specifications and terms of use for the Koeiro API.
+请参考以下链接和官方网站以获取 Koeiro API 的规格和使用条款。
 
 - [http://koeiromap.rinna.jp/](http://koeiromap.rinna.jp/)
 
-# Other Documentation
+# 其它文档
 
 - [https://vrm.dev/](https://vrm.dev/)
 - [https://github.com/pixiv/three-vrm](https://github.com/pixiv/three-vrm)
