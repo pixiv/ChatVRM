@@ -16,6 +16,7 @@ import { Introduction } from "@/components/introduction";
 import { Menu } from "@/components/menu";
 import { GitHubLink } from "@/components/githubLink";
 import { Meta } from "@/components/meta";
+import lang from "@/i18n";
 
 const m_plus_2 = M_PLUS_2({
   variable: "--font-m-plus-2",
@@ -70,7 +71,7 @@ export default function Home() {
   const handleSendChat = useCallback(
     async (text: string) => {
       if (!openAiKey) {
-        setAssistantMessage("APIキーが入力されていません");
+        setAssistantMessage(lang.DaboardAPIKeyNotEntered);
         return;
       }
 

@@ -2,6 +2,8 @@ const en = {
   DaboardSettings: "Settings",
   DaboardConversationLog: "Conversation Log",
   DaboardLanguage: "Language",
+  DaboardInputPlaceHolder: "Please enter what you would like to hear",
+  DaboardAPIKeyNotEntered: "An API key has not been entered",
 
   IntroAboutThisApp: "About this application",
   IntroDetail:

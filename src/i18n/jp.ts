@@ -2,6 +2,8 @@ const jp = {
   DaboardSettings: "設定",
   DaboardConversationLog: "会話ログ",
   DaboardLanguage: "言語",
+  DaboardInputPlaceHolder: "聞きたいことをいれてね",
+  DaboardAPIKeyNotEntered: "APIキーが入力されていません",
 
   IntroAboutThisApp: "このアプリケーションについて",
   IntroDetail:
