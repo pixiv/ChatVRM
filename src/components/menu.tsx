@@ -6,6 +6,7 @@ import React, { useCallback, useContext, useRef, useState } from "react";
 import { Settings } from "./settings";
 import { ViewerContext } from "@/features/vrmViewer/viewerContext";
 import { AssistantText } from "./assistantText";
+import lang from "@/i18n";
 
 type Props = {
   openAiKey: string;
@@ -89,26 +90,32 @@ export const Menu = ({
         <div className="grid grid-flow-col gap-[8px]">
           <IconButton
             iconName="24/Menu"
-            label="設定"
+            label={lang.DaboardSettings}
             isProcessing={false}
             onClick={() => setShowSettings(true)}
           ></IconButton>
           {showChatLog ? (
             <IconButton
               iconName="24/CommentOutline"
-              label="会話ログ"
+              label={lang.DaboardConversationLog}
               isProcessing={false}
               onClick={() => setShowChatLog(false)}
             />
           ) : (
             <IconButton
               iconName="24/CommentFill"
-              label="会話ログ"
+              label={lang.DaboardConversationLog}
               isProcessing={false}
               disabled={chatLog.length <= 0}
               onClick={() => setShowChatLog(true)}
             />
           )}
+          <IconButton
+            iconName="24/Text"
+            label={lang.DaboardLanguage}
+            isProcessing={false}
+            onClick={() => setShowChatLog(true)}
+          />
         </div>
       </div>
       {showChatLog && <ChatLog messages={chatLog} />}
