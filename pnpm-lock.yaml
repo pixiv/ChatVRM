@@ -13,6 +13,9 @@ dependencies:
   '@types/dom-speech-recognition':
     specifier: ^0.0.1
     version: 0.0.1
+  '@vercel/analytics':
+    specifier: ^1.0.0
+    version: 1.0.0(react@18.2.0)
   eslint:
     specifier: 8.36.0
     version: 8.36.0
@@ -613,6 +616,14 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.59.2
       eslint-visitor-keys: 3.4.0
+    dev: false
+
+  /@vercel/analytics@1.0.0(react@18.2.0):
+    resolution: {integrity: sha512-RQmj7pv82JwGDHrnKeRc6TtSw2U7rWNubc2IH0ernTzWTj02yr9zvIYiYJeztsBzrJtWv7m8Nz6vxxb+cdEtJw==}
+    peerDependencies:
+      react: ^16.8||^17||^18
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /acorn-jsx@5.3.2(acorn@8.8.2):
