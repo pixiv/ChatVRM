@@ -8,7 +8,7 @@ type Props = {
   onChangeUserMessage: (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => void;
-  onClickSendButton: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClickSendButton: () => void;
   onClickMicButton: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 export const MessageInput = ({
@@ -36,6 +36,9 @@ export const MessageInput = ({
               type="text"
               placeholder={lang.DaboardInputPlaceHolder}
               onChange={onChangeUserMessage}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") onClickSendButton();
+              }}
               disabled={isChatProcessing}
               className="disabled w-full rounded-16 bg-surface1 px-16 font-M_PLUS_2 font-bold text-text-primary typography-16 hover:bg-surface1-hover focus:bg-surface1 disabled:bg-surface1-disabled disabled:text-primary-disabled"
               value={userMessage}></input>
