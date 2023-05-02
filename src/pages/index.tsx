@@ -10,7 +10,7 @@ import { speakCharacter } from "@/features/messages/speakCharacter";
 import { MessageInputContainer } from "@/components/messageInputContainer";
 import { SYSTEM_PROMPT } from "@/features/constants/systemPromptConstants";
 import { KoeiroParam, DEFAULT_PARAM } from "@/features/constants/koeiroParam";
-import { getChatResponseStream } from "@/features/chat/openAiChat";
+import { getChatResponseStream, getAzureChatResponseStream } from "@/features/chat/openAiChat";
 import { M_PLUS_2, Montserrat } from "next/font/google";
 import { Introduction } from "@/components/introduction";
 import { Menu } from "@/components/menu";
@@ -34,6 +34,10 @@ export default function Home() {
 
   const [systemPrompt, setSystemPrompt] = useState(SYSTEM_PROMPT);
   const [openAiKey, setOpenAiKey] = useState("");
+  const [azureOpenAiKey, setAzureOpenAiKey] = useState("");
+  const [azureOpenAiResourceName, setAzureOpenAiResourceName] = useState("");
+  const [azureOpenAiDeploymentName, setAzureOpenAiDeploymentName] = useState("");
+
   const [koeiroParam, setKoeiroParam] = useState<KoeiroParam>(DEFAULT_PARAM);
   const [chatProcessing, setChatProcessing] = useState(false);
   const [chatLog, setChatLog] = useState<Message[]>([]);
@@ -69,9 +73,21 @@ export default function Home() {
    */
   const handleSendChat = useCallback(
     async (text: string) => {
-      if (!openAiKey) {
+      if (!openAiKey && !azureOpenAiKey) {
         setAssistantMessage("APIキーが入力されていません");
         return;
+      }
+
+      // Azure OpenAI ServiceのAPIキーが入力されている場合、リソース名とデプロイ名も必須
+      if (azureOpenAiKey) {
+        if (!azureOpenAiResourceName) {
+          setAssistantMessage("Azure OpenAI Serviceのリソース名が入力されていません");
+          return;
+        }
+        if (!azureOpenAiDeploymentName) {
+          setAssistantMessage("Azure OpenAI Serviceのモデルのデプロイ名が入力されていません");
+          return;
+        }
       }
 
       const newMessage = text;
@@ -95,12 +111,24 @@ export default function Home() {
         ...messageLog,
       ];
 
-      const stream = await getChatResponseStream(messages, openAiKey).catch(
-        (e) => {
+      // OpenAIのAPIキーを優先して使用する
+      let stream: ReadableStream | null = null;
+      if (openAiKey) {
+        stream = await getChatResponseStream(messages, openAiKey).catch(
+          (e) => {
+            console.error(e);
+            return null;
+          }
+        );
+      }
+      else if (azureOpenAiKey) {
+        stream = await getAzureChatResponseStream(messages, azureOpenAiKey, azureOpenAiResourceName, azureOpenAiDeploymentName
+        ).catch((e) => {
           console.error(e);
           return null;
-        }
-      );
+        });
+      }
+
       if (stream == null) {
         setChatProcessing(false);
         return;
@@ -173,13 +201,22 @@ export default function Home() {
       setChatLog(messageLogAssistant);
       setChatProcessing(false);
     },
-    [systemPrompt, chatLog, handleSpeakAi, openAiKey, koeiroParam]
+    [systemPrompt, chatLog, handleSpeakAi, openAiKey, azureOpenAiKey, azureOpenAiResourceName, azureOpenAiDeploymentName, koeiroParam]
   );
 
   return (
     <div className={`${m_plus_2.variable} ${montserrat.variable}`}>
       <Meta />
-      <Introduction openAiKey={openAiKey} onChangeAiKey={setOpenAiKey} />
+      <Introduction
+        openAiKey={openAiKey}
+        azureOpenAiKey={azureOpenAiKey}
+        azureOpenAiResourceName={azureOpenAiResourceName}
+        azureOpenAiDeploymentName={azureOpenAiDeploymentName}
+        onChangeAiKey={setOpenAiKey}
+        onChangeAzureOpenAiKey={setAzureOpenAiKey}
+        onChangeAzureOpenAiResourceName={setAzureOpenAiResourceName}
+        onChangeAzureOpenAiDeploymentName={setAzureOpenAiDeploymentName}
+      />
       <VrmViewer />
       <MessageInputContainer
         isChatProcessing={chatProcessing}
@@ -187,11 +224,17 @@ export default function Home() {
       />
       <Menu
         openAiKey={openAiKey}
+        azureOpenAiKey={azureOpenAiKey}
+        azureOpenAiResourceName={azureOpenAiResourceName}
+        azureOpenAiDeploymentName={azureOpenAiDeploymentName}
         systemPrompt={systemPrompt}
         chatLog={chatLog}
         koeiroParam={koeiroParam}
         assistantMessage={assistantMessage}
         onChangeAiKey={setOpenAiKey}
+        onChangeAzureOpenAiKey={setAzureOpenAiKey}
+        onChangeAzureOpenAiResourceName={setAzureOpenAiResourceName}
+        onChangeAzureOpenAiDeploymentName={setAzureOpenAiDeploymentName}
         onChangeSystemPrompt={setSystemPrompt}
         onChangeChatLog={handleChangeChatLog}
         onChangeKoeiromapParam={setKoeiroParam}

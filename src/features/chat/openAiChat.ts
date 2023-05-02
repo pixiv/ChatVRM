@@ -49,6 +49,47 @@ export async function getChatResponseStream(
     }),
   });
 
+  return readChatResponseStream(res);
+}
+
+export async function getAzureChatResponseStream(
+  messages: Message[],
+  apiKey: string,
+  resourceName: string,
+  deploymentName: string
+) {
+  if (!apiKey) {
+    throw new Error("Invalid API Key");
+  }
+  if (!resourceName) {
+    throw new Error("Invalid Resource Name");
+  }
+  if (!deploymentName) {
+    throw new Error("Invalid Deployment Name");
+  }
+
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    "api-key": apiKey,
+  };
+
+  const apiVersion = "2023-03-15-preview";
+  const res = await fetch(`https://${resourceName}.openai.azure.com/openai/deployments/${deploymentName}/chat/completions?api-version=${apiVersion}`, {
+    headers: headers,
+    method: "POST",
+    body: JSON.stringify({
+      messages: messages,
+      stream: true,
+      max_tokens: 200,
+    }),
+  });
+
+  return readChatResponseStream(res);
+}
+
+async function readChatResponseStream(
+  res: Response
+): Promise<ReadableStream> {
   const reader = res.body?.getReader();
   if (res.status !== 200 || !reader) {
     throw new Error("Something went wrong");

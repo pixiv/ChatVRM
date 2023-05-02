@@ -1,4 +1,5 @@
 import React from "react";
+import { useState, useCallback } from "react";
 import { IconButton } from "./iconButton";
 import { TextButton } from "./textButton";
 import { Message } from "@/features/messages/messages";
@@ -13,11 +14,17 @@ import { Link } from "./link";
 
 type Props = {
   openAiKey: string;
+  azureOpenAiKey: string;
+  azureOpenAiResourceName: string;
+  azureOpenAiDeploymentName: string;
   systemPrompt: string;
   chatLog: Message[];
   koeiroParam: KoeiroParam;
   onClickClose: () => void;
   onChangeAiKey: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeAzureOpenAiKey: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeAzureOpenAiResourceName: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeAzureOpenAiDeploymentName: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeSystemPrompt: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
   onChangeChatLog: (index: number, text: string) => void;
   onChangeKoeiroParam: (x: number, y: number) => void;
@@ -25,16 +32,26 @@ type Props = {
 };
 export const Settings = ({
   openAiKey,
+  azureOpenAiKey,
+  azureOpenAiResourceName,
+  azureOpenAiDeploymentName,
   chatLog,
   systemPrompt,
   koeiroParam,
   onClickClose,
   onChangeSystemPrompt,
   onChangeAiKey,
+  onChangeAzureOpenAiKey,
+  onChangeAzureOpenAiResourceName,
+  onChangeAzureOpenAiDeploymentName,
   onChangeChatLog,
   onChangeKoeiroParam,
   onClickOpenVrmFile,
 }: Props) => {
+  const [provider, setProvider] = useState("openai");
+  const handleProviderChange = useCallback((event: React.ChangeEvent<HTMLSelectElement>) => {
+    setProvider(event.target.value);
+  }, []);
   return (
     <div className="absolute z-40 w-full h-full bg-white/80 backdrop-blur ">
       <div className="absolute m-24">
@@ -48,28 +65,97 @@ export const Settings = ({
         <div className="text-text1 max-w-3xl mx-auto px-24 py-64 ">
           <div className="my-24 typography-32 font-bold">設定</div>
           <div className="my-24">
-            <div className="my-16 typography-20 font-bold">OpenAI API キー</div>
-            <input
-              className="text-ellipsis px-16 py-8 w-col-span-2 bg-surface1 hover:bg-surface1-hover rounded-8"
-              type="text"
-              placeholder="sk-..."
-              value={openAiKey}
-              onChange={onChangeAiKey}
-            />
-            <div>
-              APIキーは
-              <Link
-                url="https://platform.openai.com/account/api-keys"
-                label="OpenAIのサイト"
+            <div className="my-16 typography-20 font-bold">
+              ChatGPT APIキー
+            </div>
+            <div className="mt-16">プロバイダー</div>
+            <select
+              value={provider}
+              onChange={handleProviderChange}
+              className="text-ellipsis px-16 py-8 w-1/2 bg-surface1 hover:bg-surface1-hover rounded-8"
+            >
+              <option value="openai">OpenAI</option>
+              <option value="azure_openai">Azure OpenAI Service</option>
+            </select>
+            {provider === "openai" ? (
+            <div className="my-8">
+              <div className="mt-16">
+                APIキー
+              </div>
+              <input
+                type="text"
+                placeholder="sk-..."
+                value={openAiKey}
+                onChange={onChangeAiKey}
+                className="text-ellipsis px-16 py-8 w-full bg-surface1 hover:bg-surface1-hover rounded-8"
               />
-              で取得できます。取得したAPIキーをフォームに入力してください。
+              <div className="my-16">
+                APIキーは
+                <Link
+                  url="https://platform.openai.com/account/api-keys"
+                  label="OpenAIのサイト"
+                />
+                で取得できます。取得したAPIキーをフォームに入力してください。
+              </div>
+              <div className="my-16">
+                入力されたAPIキーで、ブラウザから直接OpenAIのAPIを利用しますので、サーバー等には保存されません。
+                なお、利用しているモデルはGPT-3です。
+                <br />
+                ※APIキーや会話文はピクシブのサーバーに送信されません。
+              </div>
             </div>
-            <div className="my-16">
-              入力されたAPIキーで、ブラウザから直接OpenAIのAPIを利用しますので、サーバー等には保存されません。
-              なお、利用しているモデルはGPT-3です。
-              <br />
-              ※APIキーや会話文はピクシブのサーバーに送信されません。
-            </div>
+            ) : (
+              <>
+                <div className="my-8">
+                  <div className="mt-16">
+                    APIキー
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="YOUR_API_KEY"
+                    value={azureOpenAiKey}
+                    onChange={onChangeAzureOpenAiKey}
+                    className="text-ellipsis px-16 py-8 w-full bg-surface1 hover:bg-surface1-hover rounded-8"
+                  />
+                </div>
+                <div className="my-8">
+                  <div className="mt-16">
+                    リソース名
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="YOUR_RESOURCE_NAME"
+                    value={azureOpenAiResourceName}
+                    onChange={onChangeAzureOpenAiResourceName}
+                    className="text-ellipsis px-16 py-8 w-full bg-surface1 hover:bg-surface1-hover rounded-8"
+                  />
+                </div>
+                <div className="my-8">
+                  <div className="mt-16">
+                    モデルのデプロイ名
+                  </div>
+                  <input
+                    type="text"
+                    placeholder="YOUR_DEPLOYMENT_NAME"
+                    value={azureOpenAiDeploymentName}
+                    onChange={onChangeAzureOpenAiDeploymentName}
+                    className="text-ellipsis px-16 py-8 w-full bg-surface1 hover:bg-surface1-hover rounded-8"
+                  />
+                </div>
+                <div className="my-16">
+                  <Link
+                    url="https://learn.microsoft.com/ja-jp/azure/cognitive-services/openai/reference"
+                    label="Azure OpenAI ServiceのREST APIリファレンス"
+                  />
+                  を参考にして各項目を入力してください。
+                </div>
+                <div className="my-16">
+                  入力されたAPIキーで、ブラウザから直接Azure OpenAI ServiceのAPIを利用しますので、サーバー等には保存されません。
+                  <br />
+                  ※APIキーや会話文はピクシブのサーバーに送信されません。
+                </div>
+              </>
+            )}
           </div>
           <div className="my-40">
             <div className="my-16 typography-20 font-bold">

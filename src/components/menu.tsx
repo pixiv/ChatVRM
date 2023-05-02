@@ -9,23 +9,35 @@ import { AssistantText } from "./assistantText";
 
 type Props = {
   openAiKey: string;
+  azureOpenAiKey: string;
+  azureOpenAiResourceName: string;
+  azureOpenAiDeploymentName: string;
   systemPrompt: string;
   chatLog: Message[];
   koeiroParam: KoeiroParam;
   assistantMessage: string;
   onChangeSystemPrompt: (systemPrompt: string) => void;
   onChangeAiKey: (key: string) => void;
+  onChangeAzureOpenAiKey: (key: string) => void;
+  onChangeAzureOpenAiResourceName: (resourceName: string) => void;
+  onChangeAzureOpenAiDeploymentName: (deploymentName: string) => void;
   onChangeChatLog: (index: number, text: string) => void;
   onChangeKoeiromapParam: (param: KoeiroParam) => void;
 };
 export const Menu = ({
   openAiKey,
+  azureOpenAiKey,
+  azureOpenAiResourceName,
+  azureOpenAiDeploymentName,
   systemPrompt,
   chatLog,
   koeiroParam,
   assistantMessage,
   onChangeSystemPrompt,
   onChangeAiKey,
+  onChangeAzureOpenAiKey,
+  onChangeAzureOpenAiResourceName,
+  onChangeAzureOpenAiDeploymentName,
   onChangeChatLog,
   onChangeKoeiromapParam,
 }: Props) => {
@@ -46,6 +58,27 @@ export const Menu = ({
       onChangeAiKey(event.target.value);
     },
     [onChangeAiKey]
+  );
+
+  const handleAzureOpenAiKeyChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      onChangeAzureOpenAiKey(event.target.value);
+    },
+    [onChangeAzureOpenAiKey]
+  );
+
+  const handleAzureOpenAiResourceNameChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      onChangeAzureOpenAiResourceName(event.target.value);
+    },
+    [onChangeAzureOpenAiResourceName]
+  );
+
+  const handleAzureOpenAiDeploymentNameChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      onChangeAzureOpenAiDeploymentName(event.target.value);
+    },
+    [onChangeAzureOpenAiDeploymentName]
   );
 
   const handleChangeKoeiroParam = useCallback(
@@ -115,11 +148,17 @@ export const Menu = ({
       {showSettings && (
         <Settings
           openAiKey={openAiKey}
+          azureOpenAiKey={azureOpenAiKey}
+          azureOpenAiResourceName={azureOpenAiResourceName}
+          azureOpenAiDeploymentName={azureOpenAiDeploymentName}          
           chatLog={chatLog}
           systemPrompt={systemPrompt}
           koeiroParam={koeiroParam}
           onClickClose={() => setShowSettings(false)}
           onChangeAiKey={handleAiKeyChange}
+          onChangeAzureOpenAiKey={handleAzureOpenAiKeyChange}
+          onChangeAzureOpenAiResourceName={handleAzureOpenAiResourceNameChange}
+          onChangeAzureOpenAiDeploymentName={handleAzureOpenAiDeploymentNameChange}          
           onChangeSystemPrompt={handleChangeSystemPrompt}
           onChangeChatLog={onChangeChatLog}
           onChangeKoeiroParam={handleChangeKoeiroParam}
