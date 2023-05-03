@@ -40,7 +40,6 @@ export default function Home() {
   const [assistantMessage, setAssistantMessage] = useState("");
 
   useEffect(() => {
-    console.log("読み出し");
     if (window.localStorage.getItem("chatVRMParams")) {
       const params = JSON.parse(
         window.localStorage.getItem("chatVRMParams") as string
@@ -52,7 +51,6 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    console.log("書き出し");
     process.nextTick(() =>
       window.localStorage.setItem(
         "chatVRMParams",
