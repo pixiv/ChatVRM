@@ -22,6 +22,8 @@ type Props = {
   onChangeChatLog: (index: number, text: string) => void;
   onChangeKoeiroParam: (x: number, y: number) => void;
   onClickOpenVrmFile: () => void;
+  onClickResetChatLog: () => void;
+  onClickResetSystemPrompt: () => void;
 };
 export const Settings = ({
   openAiKey,
@@ -34,6 +36,8 @@ export const Settings = ({
   onChangeChatLog,
   onChangeKoeiroParam,
   onClickOpenVrmFile,
+  onClickResetChatLog,
+  onClickResetSystemPrompt,
 }: Props) => {
   return (
     <div className="absolute z-40 w-full h-full bg-white/80 backdrop-blur ">
@@ -80,8 +84,13 @@ export const Settings = ({
             </div>
           </div>
           <div className="my-40">
-            <div className="my-16 typography-20 font-bold">
-              キャラクター設定（システムプロンプト）
+            <div className="my-8">
+              <div className="my-16 typography-20 font-bold">
+                キャラクター設定（システムプロンプト）
+              </div>
+              <TextButton onClick={onClickResetSystemPrompt}>
+                キャラクター設定リセット
+              </TextButton>
             </div>
 
             <textarea
@@ -170,7 +179,12 @@ export const Settings = ({
           </div>
           {chatLog.length > 0 && (
             <div className="my-40">
-              <div className="my-16 typography-20 font-bold">会話履歴</div>
+              <div className="my-8 grid-cols-2">
+                <div className="my-16 typography-20 font-bold">会話履歴</div>
+                <TextButton onClick={onClickResetChatLog}>
+                  会話履歴リセット
+                </TextButton>
+              </div>
               <div className="my-8">
                 {chatLog.map((value, index) => {
                   return (

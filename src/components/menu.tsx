@@ -17,6 +17,8 @@ type Props = {
   onChangeAiKey: (key: string) => void;
   onChangeChatLog: (index: number, text: string) => void;
   onChangeKoeiromapParam: (param: KoeiroParam) => void;
+  handleClickResetChatLog: () => void;
+  handleClickResetSystemPrompt: () => void;
   handleResume: (previousMessages:Message[], newMessage: string) => void;
 };
 export const Menu = ({
@@ -29,6 +31,8 @@ export const Menu = ({
   onChangeAiKey,
   onChangeChatLog,
   onChangeKoeiromapParam,
+  handleClickResetChatLog,
+  handleClickResetSystemPrompt,
   handleResume,
 }: Props) => {
   const [showSettings, setShowSettings] = useState(false);
@@ -126,6 +130,8 @@ export const Menu = ({
           onChangeChatLog={onChangeChatLog}
           onChangeKoeiroParam={handleChangeKoeiroParam}
           onClickOpenVrmFile={handleClickOpenVrmFile}
+          onClickResetChatLog={handleClickResetChatLog}
+          onClickResetSystemPrompt={handleClickResetSystemPrompt}
         />
       )}
       {!showChatLog && assistantMessage && (
