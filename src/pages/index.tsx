@@ -39,6 +39,10 @@ export default function Home() {
   const [chatLog, setChatLog] = useState<Message[]>([]);
   const [assistantMessage, setAssistantMessage] = useState("");
 
+  const handleResume = (previousMessages:Message[], newMessage:string) => {
+    handleSendChat(newMessage, previousMessages);
+  }
+
   const handleChangeChatLog = useCallback(
     (targetIndex: number, text: string) => {
       const newChatLog = chatLog.map((v: Message, i) => {
@@ -68,7 +72,7 @@ export default function Home() {
    * アシスタントとの会話を行う
    */
   const handleSendChat = useCallback(
-    async (text: string) => {
+    async (text: string, overrideChatLog?: Message[]) => {
       if (!openAiKey) {
         setAssistantMessage("APIキーが入力されていません");
         return;
@@ -80,8 +84,11 @@ export default function Home() {
 
       setChatProcessing(true);
       // ユーザーの発言を追加して表示
+
+      const baseChatLog = overrideChatLog || chatLog;
+      
       const messageLog: Message[] = [
-        ...chatLog,
+        ...baseChatLog,
         { role: "user", content: newMessage },
       ];
       setChatLog(messageLog);
@@ -195,6 +202,7 @@ export default function Home() {
         onChangeSystemPrompt={setSystemPrompt}
         onChangeChatLog={handleChangeChatLog}
         onChangeKoeiromapParam={setKoeiroParam}
+        handleResume={handleResume}
       />
       <GitHubLink />
     </div>
