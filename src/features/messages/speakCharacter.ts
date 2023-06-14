@@ -1,5 +1,5 @@
 import { wait } from "@/utils/wait";
-import { synthesizeVoice } from "../koeiromap/koeiromap";
+import { synthesizeVoice, synthesizeVoiceApi } from "./synthesizeVoice";
 import { Viewer } from "../vrmViewer/viewer";
 import { Screenplay } from "./messages";
 import { Talk } from "./messages";
@@ -27,23 +27,25 @@ const createSpeakCharacter = () => {
     });
 
     prevFetchPromise = fetchPromise;
-    prevSpeakPromise = Promise.all([fetchPromise, prevSpeakPromise]).then(([audioBuffer]) => {
-      onStart?.();
-      if (!audioBuffer) {
-        return;
+    prevSpeakPromise = Promise.all([fetchPromise, prevSpeakPromise]).then(
+      ([audioBuffer]) => {
+        onStart?.();
+        if (!audioBuffer) {
+          return;
+        }
+        return viewer.model?.speak(audioBuffer, screenplay);
       }
-      return viewer.model?.speak(audioBuffer, screenplay);
-    });
+    );
     prevSpeakPromise.then(() => {
       onComplete?.();
     });
   };
-}
+};
 
 export const speakCharacter = createSpeakCharacter();
 
 export const fetchAudio = async (talk: Talk): Promise<ArrayBuffer> => {
-  const ttsVoice = await synthesizeVoice(
+  const ttsVoice = await synthesizeVoiceApi(
     talk.message,
     talk.speakerX,
     talk.speakerY,
