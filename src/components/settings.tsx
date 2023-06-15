@@ -163,8 +163,8 @@ export const Settings = ({
               <div className="select-none">x : {koeiroParam.speakerX}</div>
               <input
                 type="range"
-                min={-3}
-                max={3}
+                min={-10}
+                max={10}
                 step={0.001}
                 value={koeiroParam.speakerX}
                 className="mt-8 mb-16 input-range"
@@ -178,8 +178,8 @@ export const Settings = ({
               <div className="select-none">y : {koeiroParam.speakerY}</div>
               <input
                 type="range"
-                min={-3}
-                max={3}
+                min={-10}
+                max={10}
                 step={0.001}
                 value={koeiroParam.speakerY}
                 className="mt-8 mb-16 input-range"
