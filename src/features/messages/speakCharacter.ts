@@ -1,5 +1,5 @@
 import { wait } from "@/utils/wait";
-import { synthesizeVoice, synthesizeVoiceApi } from "./synthesizeVoice";
+import { synthesizeVoiceApi } from "./synthesizeVoice";
 import { Viewer } from "../vrmViewer/viewer";
 import { Screenplay } from "./messages";
 import { Talk } from "./messages";
@@ -12,6 +12,7 @@ const createSpeakCharacter = () => {
   return (
     screenplay: Screenplay,
     viewer: Viewer,
+    koeiroApiKey: string,
     onStart?: () => void,
     onComplete?: () => void
   ) => {
@@ -21,7 +22,9 @@ const createSpeakCharacter = () => {
         await wait(1000 - (now - lastTime));
       }
 
-      const buffer = await fetchAudio(screenplay.talk).catch(() => null);
+      const buffer = await fetchAudio(screenplay.talk, koeiroApiKey).catch(
+        () => null
+      );
       lastTime = Date.now();
       return buffer;
     });
@@ -44,12 +47,16 @@ const createSpeakCharacter = () => {
 
 export const speakCharacter = createSpeakCharacter();
 
-export const fetchAudio = async (talk: Talk): Promise<ArrayBuffer> => {
+export const fetchAudio = async (
+  talk: Talk,
+  apiKey: string
+): Promise<ArrayBuffer> => {
   const ttsVoice = await synthesizeVoiceApi(
     talk.message,
     talk.speakerX,
     talk.speakerY,
-    talk.style
+    talk.style,
+    apiKey
   );
   const url = ttsVoice.audio;
 

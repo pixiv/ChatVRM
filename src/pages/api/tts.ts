@@ -1,5 +1,4 @@
-import fetch from "node-fetch";
-import { koeiromapV0, koeiromapFreeV1 } from "@/features/koeiromap/koeiromap";
+import { koeiromapFreeV1 } from "@/features/koeiromap/koeiromap";
 
 import type { NextApiRequest, NextApiResponse } from "next";
 
@@ -17,7 +16,13 @@ export default async function handler(
   const style = req.body.style;
   const apiKey = req.body.apiKey;
 
-  const voice = await koeiromapV0(message, speaker_x, speaker_y, style);
+  const voice = await koeiromapFreeV1(
+    message,
+    speaker_x,
+    speaker_y,
+    style,
+    apiKey
+  );
 
   res.status(200).json(voice);
 }

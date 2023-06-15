@@ -15,7 +15,8 @@ export async function synthesizeVoiceV1(
   message: string,
   speaker_x: number,
   speaker_y: number,
-  style: TalkStyle
+  style: TalkStyle,
+  apiKey: string
 ) {
   // Free向けに感情を制限する
   let limitedStyle: "talk" | "happy" | "sad";
@@ -25,7 +26,6 @@ export async function synthesizeVoiceV1(
     limitedStyle = "talk";
   }
 
-  const apiKey = "";
   const koeiroRes = await koeiromapFreeV1(
     message,
     speaker_x,
@@ -40,14 +40,15 @@ export async function synthesizeVoiceApi(
   message: string,
   speaker_x: number,
   speaker_y: number,
-  style: TalkStyle
+  style: TalkStyle,
+  apiKey: string
 ) {
   const body = {
     message: message,
     speaker_x: speaker_x,
     speaker_y: speaker_y,
     style: style,
-    apiKey: "",
+    apiKey: apiKey,
   };
 
   const res = await fetch("/api/tts", {
