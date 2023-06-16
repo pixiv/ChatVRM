@@ -11,17 +11,10 @@ import { MessageInputContainer } from "@/components/messageInputContainer";
 import { SYSTEM_PROMPT } from "@/features/constants/systemPromptConstants";
 import { KoeiroParam, DEFAULT_PARAM } from "@/features/constants/koeiroParam";
 import { getChatResponseStream } from "@/features/chat/openAiChat";
-import { Montserrat } from "next/font/google";
 import { Introduction } from "@/components/introduction";
 import { Menu } from "@/components/menu";
 import { GitHubLink } from "@/components/githubLink";
 import { Meta } from "@/components/meta";
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  display: "swap",
-  subsets: ["latin"],
-});
 
 export default function Home() {
   const { viewer } = useContext(ViewerContext);
@@ -192,7 +185,7 @@ export default function Home() {
   );
 
   return (
-    <div className={`${montserrat.variable}`}>
+    <div className={"font-M_PLUS_2"}>
       <Meta />
       <Introduction
         openAiKey={openAiKey}
