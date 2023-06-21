@@ -73,10 +73,10 @@ export const Settings = ({
               で取得できます。取得したAPIキーをフォームに入力してください。
             </div>
             <div className="my-16">
-              入力されたAPIキーで、ブラウザから直接OpenAIのAPIを利用しますので、サーバー等には保存されません。
-              なお、利用しているモデルはGPT-3です。
+              ChatGPT
+              APIはブラウザから直接アクセスしています。また、APIキーや会話内容はピクシブのサーバには保存されません。
               <br />
-              ※APIキーや会話文はピクシブのサーバーに送信されません。
+              ※利用しているモデルはChatGPT API (GPT-3.5)です。
             </div>
           </div>
           <div className="my-40">
@@ -106,15 +106,11 @@ export const Settings = ({
           <div className="my-40">
             <div className="my-16 typography-20 font-bold">声の調整</div>
             <div>
-              Koeiro APIを使用しています。詳しくは
-              <a
-                className="text-primary hover:text-primary-hover"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="http://koeiromap.rinna.jp"
-              >
-                http://koeiromap.rinna.jp
-              </a>
+              KoemotionのKoeiromap APIを使用しています。詳しくは
+              <Link
+                url="https://koemotion.rinna.co.jp"
+                label="https://koemotion.rinna.co.jp"
+              />
               をご覧ください。
             </div>
             <div className="mt-16 font-bold">API キー</div>
@@ -122,7 +118,7 @@ export const Settings = ({
               <input
                 className="text-ellipsis px-16 py-8 w-col-span-2 bg-surface1 hover:bg-surface1-hover rounded-8"
                 type="text"
-                placeholder="sk-..."
+                placeholder="..."
                 value={koeiromapKey}
                 onChange={onChangeKoeiromapKey}
               />

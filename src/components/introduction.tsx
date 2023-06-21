@@ -57,8 +57,15 @@ export const Introduction = ({
               }
               label={"ChatGPT API"}
             />
-            音声合成には
-            <Link url={"http://koeiromap.rinna.jp/"} label={"Koeiro API"} />
+            、 音声合成には
+            <Link url={"https://koemotion.rinna.co.jp/"} label={"Koemotion"} />
+            の
+            <Link
+              url={
+                "https://developers.rinna.co.jp/product/#product=koeiromap-free"
+              }
+              label={"Koeiromap API"}
+            />
             を使用しています。 詳細はこちらの
             <Link
               url={"https://inside.pixiv.blog/2023/04/28/160000"}
@@ -97,6 +104,13 @@ export const Introduction = ({
             onChange={handleKoeiromapKeyChange}
             className="my-4 px-16 py-8 w-full h-40 bg-surface3 hover:bg-surface3-hover rounded-4 text-ellipsis"
           ></input>
+          <div>
+            APIキーはrinna Developersから発行してください。
+            <Link
+              url="https://developers.rinna.co.jp/product/#product=koeiromap-free"
+              label="詳細はこちら"
+            />
+          </div>
         </div>
         <div className="my-24">
           <div className="my-8 font-bold typography-20 text-secondary">
@@ -118,10 +132,10 @@ export const Introduction = ({
             で取得できます。取得したAPIキーをフォームに入力してください。
           </div>
           <div className="my-16">
-            入力されたAPIキーで、ブラウザから直接OpenAIのAPIを利用しますので、サーバー等には保存されません。
-            なお、利用しているモデルはGPT-3です。
+            ChatGPT
+            APIはブラウザから直接アクセスしています。また、APIキーや会話内容はピクシブのサーバには保存されません。
             <br />
-            ※APIキーや会話文はピクシブのサーバーに送信されません。
+            ※利用しているモデルはChatGPT API (GPT-3.5)です。
           </div>
         </div>
         <div className="my-24">
