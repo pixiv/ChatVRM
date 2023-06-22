@@ -11,15 +11,15 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const message = req.body.message;
-  const speaker_x = req.body.speakerX;
-  const speaker_y = req.body.speakerY;
+  const speakerX = req.body.speakerX;
+  const speakerY = req.body.speakerY;
   const style = req.body.style;
   const apiKey = req.body.apiKey;
 
   const voice = await koeiromapFreeV1(
     message,
-    speaker_x,
-    speaker_y,
+    speakerX,
+    speakerY,
     style,
     apiKey
   );

@@ -4,18 +4,18 @@ import { TalkStyle } from "../messages/messages";
 
 export async function synthesizeVoice(
   message: string,
-  speaker_x: number,
-  speaker_y: number,
+  speakerX: number,
+  speakerY: number,
   style: TalkStyle
 ) {
-  const koeiroRes = await koeiromapV0(message, speaker_x, speaker_y, style);
+  const koeiroRes = await koeiromapV0(message, speakerX, speakerY, style);
   return { audio: koeiroRes.audio };
 }
 
 export async function synthesizeVoiceV1(
   message: string,
-  speaker_x: number,
-  speaker_y: number,
+  speakerX: number,
+  speakerY: number,
   style: TalkStyle,
   apiKey: string
 ) {
@@ -24,8 +24,8 @@ export async function synthesizeVoiceV1(
 
   const koeiroRes = await koeiromapFreeV1(
     message,
-    speaker_x,
-    speaker_y,
+    speakerX,
+    speakerY,
     reducedStyle,
     apiKey
   );
@@ -34,8 +34,8 @@ export async function synthesizeVoiceV1(
 
 export async function synthesizeVoiceApi(
   message: string,
-  speaker_x: number,
-  speaker_y: number,
+  speakerX: number,
+  speakerY: number,
   style: TalkStyle,
   apiKey: string
 ) {
@@ -44,8 +44,8 @@ export async function synthesizeVoiceApi(
 
   const body = {
     message: message,
-    speaker_x: speaker_x,
-    speaker_y: speaker_y,
+    speakerX: speakerX,
+    speakerY: speakerY,
     style: reducedStyle,
     apiKey: apiKey,
   };

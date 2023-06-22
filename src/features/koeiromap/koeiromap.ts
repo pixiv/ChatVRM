@@ -2,16 +2,16 @@ import { TalkStyle } from "../messages/messages";
 
 export async function koeiromapV0(
   message: string,
-  speaker_x: number,
-  speaker_y: number,
+  speakerX: number,
+  speakerY: number,
   style: TalkStyle
 ) {
   const param = {
     method: "POST",
     body: JSON.stringify({
       text: message,
-      speaker_x: speaker_x,
-      speaker_y: speaker_y,
+      speaker_x: speakerX,
+      speaker_y: speakerY,
       style: style,
     }),
     headers: {
@@ -31,16 +31,16 @@ export async function koeiromapV0(
 
 export async function koeiromapFreeV1(
   message: string,
-  speaker_x: number,
-  speaker_y: number,
+  speakerX: number,
+  speakerY: number,
   style: "talk" | "happy" | "sad",
   apiKey: string
 ) {
   // Request body
   const body = {
     text: message,
-    speaker_x: speaker_x,
-    speaker_y: speaker_y,
+    speaker_x: speakerX,
+    speaker_y: speakerY,
     style: style,
     output_format: "mp3",
   };
