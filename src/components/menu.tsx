@@ -6,6 +6,7 @@ import React, { useCallback, useContext, useRef, useState } from "react";
 import { Settings } from "./settings";
 import { ViewerContext } from "@/features/vrmViewer/viewerContext";
 import { AssistantText } from "./assistantText";
+import { GitHubLink } from "./githubLink";
 
 type Props = {
   openAiKey: string;
@@ -89,8 +90,22 @@ export const Menu = ({
 
   return (
     <>
-      <div className="absolute z-10 m-24">
-        <div className="grid grid-flow-col gap-[8px]">
+      <div className="absolute z-10 w-full font-M_PLUS_2">
+        <div className="px-24 py-4 mb-8 text-center text-primary bg-white">
+          Koeiro
+          APIの提供終了により、このデモは2023/7/18以降はご利用いただけません。
+          <a
+            href=""
+            className="text-secondary hover:text-secondary-hover active:text-secondary-press"
+          >
+            Koeiromap 1.0対応版はこちら
+          </a>
+        </div>
+        <div
+          className="px-24 grid grid-flow-col 
+        grid-cols-[min-content_min-content_1fr_min-content]
+        gap-[8px] auto-cols-min whitespace-nowrap"
+        >
           <IconButton
             iconName="24/Menu"
             label="設定"
@@ -113,6 +128,8 @@ export const Menu = ({
               onClick={() => setShowChatLog(true)}
             />
           )}
+          <div></div>
+          <GitHubLink />
         </div>
       </div>
       {showChatLog && <ChatLog messages={chatLog} />}
