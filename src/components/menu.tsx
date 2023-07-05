@@ -19,6 +19,7 @@ type Props = {
   onChangeKoeiromapParam: (param: KoeiroParam) => void;
   handleClickResetChatLog: () => void;
   handleClickResetSystemPrompt: () => void;
+  handleResume: (previousMessages:Message[], newMessage: string) => void;
 };
 export const Menu = ({
   openAiKey,
@@ -32,6 +33,7 @@ export const Menu = ({
   onChangeKoeiromapParam,
   handleClickResetChatLog,
   handleClickResetSystemPrompt,
+  handleResume,
 }: Props) => {
   const [showSettings, setShowSettings] = useState(false);
   const [showChatLog, setShowChatLog] = useState(false);
@@ -115,7 +117,7 @@ export const Menu = ({
           )}
         </div>
       </div>
-      {showChatLog && <ChatLog messages={chatLog} />}
+      {showChatLog && <ChatLog messages={chatLog} handleResume={handleResume} />}
       {showSettings && (
         <Settings
           openAiKey={openAiKey}
