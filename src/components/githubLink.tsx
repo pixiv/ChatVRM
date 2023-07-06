@@ -16,7 +16,7 @@ export const GitHubLink = () => {
             width={24}
             src={buildUrl("/github-mark-white.svg")}
           ></img>
-          <div className="mx-4 text-white font-M_PLUS_2 font-bold">Fork me</div>
+          <div className="mx-4 text-white font-bold">Fork me</div>
         </div>
       </a>
     </div>

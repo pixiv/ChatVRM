@@ -24,7 +24,7 @@ export const IconButton = ({
       ) : (
         <pixiv-icon name={iconName} scale="1"></pixiv-icon>
       )}
-      {label && <div className="mx-4 font-M_PLUS_2 font-bold">{label}</div>}
+      {label && <div className="mx-4 font-bold">{label}</div>}
     </button>
   );
 };

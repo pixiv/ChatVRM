@@ -7,6 +7,7 @@ const nextConfig = {
   publicRuntimeConfig: {
     root: process.env.BASE_PATH || "",
   },
+  optimizeFonts: false,
 };
 
 module.exports = nextConfig;

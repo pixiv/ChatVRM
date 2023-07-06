@@ -16,6 +16,7 @@ type Props = {
   systemPrompt: string;
   chatLog: Message[];
   koeiroParam: KoeiroParam;
+  koeiromapKey: string;
   onClickClose: () => void;
   onChangeAiKey: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeSystemPrompt: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
@@ -24,12 +25,14 @@ type Props = {
   onClickOpenVrmFile: () => void;
   onClickResetChatLog: () => void;
   onClickResetSystemPrompt: () => void;
+  onChangeKoeiromapKey: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 export const Settings = ({
   openAiKey,
   chatLog,
   systemPrompt,
   koeiroParam,
+  koeiromapKey,
   onClickClose,
   onChangeSystemPrompt,
   onChangeAiKey,
@@ -38,6 +41,7 @@ export const Settings = ({
   onClickOpenVrmFile,
   onClickResetChatLog,
   onClickResetSystemPrompt,
+  onChangeKoeiromapKey,
 }: Props) => {
   return (
     <div className="absolute z-40 w-full h-full bg-white/80 backdrop-blur ">
@@ -69,10 +73,10 @@ export const Settings = ({
               で取得できます。取得したAPIキーをフォームに入力してください。
             </div>
             <div className="my-16">
-              入力されたAPIキーで、ブラウザから直接OpenAIのAPIを利用しますので、サーバー等には保存されません。
-              なお、利用しているモデルはGPT-3です。
+              ChatGPT
+              APIはブラウザから直接アクセスしています。また、APIキーや会話内容はピクシブのサーバには保存されません。
               <br />
-              ※APIキーや会話文はピクシブのサーバーに送信されません。
+              ※利用しているモデルはChatGPT API (GPT-3.5)です。
             </div>
           </div>
           <div className="my-40">
@@ -102,18 +106,25 @@ export const Settings = ({
           <div className="my-40">
             <div className="my-16 typography-20 font-bold">声の調整</div>
             <div>
-              Koeiro APIを使用しています。詳しくは
-              <a
-                className="text-primary hover:text-primary-hover"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="http://koeiromap.rinna.jp"
-              >
-                http://koeiromap.rinna.jp
-              </a>
+              KoemotionのKoeiromap APIを使用しています。詳しくは
+              <Link
+                url="https://koemotion.rinna.co.jp"
+                label="https://koemotion.rinna.co.jp"
+              />
               をご覧ください。
             </div>
-            <div className="mt-16">プリセット</div>
+            <div className="mt-16 font-bold">API キー</div>
+            <div className="mt-8">
+              <input
+                className="text-ellipsis px-16 py-8 w-col-span-2 bg-surface1 hover:bg-surface1-hover rounded-8"
+                type="text"
+                placeholder="..."
+                value={koeiromapKey}
+                onChange={onChangeKoeiromapKey}
+              />
+            </div>
+
+            <div className="mt-16 font-bold">プリセット</div>
             <div className="my-8 grid grid-cols-2 gap-[8px]">
               <TextButton
                 onClick={() =>
@@ -148,8 +159,8 @@ export const Settings = ({
               <div className="select-none">x : {koeiroParam.speakerX}</div>
               <input
                 type="range"
-                min={-3}
-                max={3}
+                min={-10}
+                max={10}
                 step={0.001}
                 value={koeiroParam.speakerX}
                 className="mt-8 mb-16 input-range"
@@ -163,8 +174,8 @@ export const Settings = ({
               <div className="select-none">y : {koeiroParam.speakerY}</div>
               <input
                 type="range"
-                min={-3}
-                max={3}
+                min={-10}
+                max={10}
                 step={0.001}
                 value={koeiroParam.speakerY}
                 className="mt-8 mb-16 input-range"
