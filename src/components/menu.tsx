@@ -92,14 +92,14 @@ export const Menu = ({
     <>
       <div className="absolute z-10 w-full font-M_PLUS_2">
         <div className="px-24 py-4 mb-8 text-center text-primary bg-white">
-          Koeiro
-          APIの提供終了により、このデモは2023/7/18以降はご利用いただけません。
+          Koemotionの正式リリースに伴い、
           <a
             href="https://chatvrm.glitch.me"
             className="text-secondary hover:text-secondary-hover active:text-secondary-press"
           >
-            Koeiromap 1.0対応版はこちら
+            Koeiromap 1.0対応版
           </a>
+          を公開しました。このページのデモは2023/7/18以降はご利用いただけません。
         </div>
         <div
           className="px-24 grid grid-flow-col 
