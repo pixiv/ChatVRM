@@ -11,7 +11,7 @@ ChatVRMの各機能は主に以下の技術を使用しています。
 - 返答文の生成
     - [ChatGPT API](https://platform.openai.com/docs/api-reference/chat)
 - 読み上げ音声の生成
-    - [Koeiro API](http://koeiromap.rinna.jp/)
+    - [Koemotion/Koeiromap API](https://koemotion.rinna.co.jp/)
 - 3Dキャラクターの表示
     - [@pixiv/three-vrm](https://github.com/pixiv/three-vrm)
 
@@ -57,9 +57,9 @@ ChatGPT APIの仕様や利用規約については以下のリンクや公式サ
 - [https://openai.com/policies/api-data-usage-policies](https://openai.com/policies/api-data-usage-policies)
 
 
-## Koeiro API
-ChatVRMでは返答文の音声読み上げにKoeiro APIを使用しています。
+## Koeiromap API
+ChatVRMでは返答文の音声読み上げにKoemotionのKoeiromap APIを使用しています。
 
-Koeiro APIの仕様や利用規約については以下のリンクや公式サイトをご確認ください。
+Koeiromap APIの仕様や利用規約については以下のリンクや公式サイトをご確認ください。
 
-- [http://koeiromap.rinna.jp/](http://koeiromap.rinna.jp/)
+- [https://koemotion.rinna.co.jp/](https://koemotion.rinna.co.jp/)
