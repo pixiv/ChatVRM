@@ -95,7 +95,7 @@ export const Menu = ({
           Koeiro
           APIの提供終了により、このデモは2023/7/18以降はご利用いただけません。
           <a
-            href=""
+            href="https://chatvrm.glitch.me"
             className="text-secondary hover:text-secondary-hover active:text-secondary-press"
           >
             Koeiromap 1.0対応版はこちら
