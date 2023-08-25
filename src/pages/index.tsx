@@ -1,21 +1,25 @@
-import { useCallback, useContext, useEffect, useState } from "react";
-import VrmViewer from "@/components/vrmViewer";
 import GifViewer from "@/components/gifViewer";
-import { ViewerContext } from "@/features/vrmViewer/viewerContext";
-import {
-  Message,
-  textsToScreenplay,
-  Screenplay,
-} from "@/features/messages/messages";
-import { speakCharacter } from "@/features/messages/speakCharacter";
-import { MessageInputContainer } from "@/components/messageInputContainer";
-import { SYSTEM_PROMPT } from "@/features/constants/systemPromptConstants";
-import { KoeiroParam, DEFAULT_PARAM } from "@/features/constants/koeiroParam";
-import { getChatResponseStream } from "@/features/chat/openAiChat";
 import { Introduction } from "@/components/introduction";
 import { Menu } from "@/components/menu";
-import { GitHubLink } from "@/components/githubLink";
+import { MessageInputContainer } from "@/components/messageInputContainer";
 import { Meta } from "@/components/meta";
+import { Character } from "@/features/character/character";
+import { getChatResponseStream } from "@/features/chat/openAiChat";
+import { DEFAULT_PARAM, KoeiroParam } from "@/features/constants/koeiroParam";
+import { SYSTEM_PROMPT } from "@/features/constants/systemPromptConstants";
+import {
+  Message,
+  Screenplay,
+  textsToScreenplay,
+} from "@/features/messages/messages";
+import { speakCharacter } from "@/features/messages/speakCharacter";
+import { ViewerContext } from "@/features/vrmViewer/viewerContext";
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useState
+} from 'react';
 
 export default function Home() {
   const { viewer } = useContext(ViewerContext);
@@ -27,6 +31,7 @@ export default function Home() {
   const [chatProcessing, setChatProcessing] = useState(false);
   const [chatLog, setChatLog] = useState<Message[]>([]);
   const [assistantMessage, setAssistantMessage] = useState("");
+  const [character, setCharacter] = useState<Character>('hoge')
 
   useEffect(() => {
     if (window.localStorage.getItem("chatVRMParams")) {
@@ -195,7 +200,6 @@ export default function Home() {
         onChangeKoeiromapKey={setKoeiromapKey}
       />
       <GifViewer imagePath="images/avatar_00.gif" />
-      {/* <VrmViewer /> */}
       <MessageInputContainer
         isChatProcessing={chatProcessing}
         onChatProcessStart={handleSendChat}
@@ -214,8 +218,8 @@ export default function Home() {
         handleClickResetChatLog={() => setChatLog([])}
         handleClickResetSystemPrompt={() => setSystemPrompt(SYSTEM_PROMPT)}
         onChangeKoeiromapKey={setKoeiromapKey}
+        setCharacter={setCharacter}
       />
-      <GitHubLink />
     </div>
   )
 }
