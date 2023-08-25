@@ -1,64 +1,60 @@
-# ChatVRM
+# AIVtuber Demo by ChatVRM
 
-ChatVRMはブラウザで簡単に3Dキャラクターと会話ができるデモアプリケーションです。
-
-VRMファイルをインポートしてキャラクターに合わせた声の調整や、感情表現を含んだ返答文の生成などを行うことができます。
-
-ChatVRMの各機能は主に以下の技術を使用しています。
-
-- ユーザーの音声の認識
-    - [Web Speech API(SpeechRecognition)](https://developer.mozilla.org/ja/docs/Web/API/SpeechRecognition)
-- 返答文の生成
-    - [ChatGPT API](https://platform.openai.com/docs/api-reference/chat)
-- 読み上げ音声の生成
-    - [Koemotion/Koeiromap API](https://koemotion.rinna.co.jp/)
-- 3Dキャラクターの表示
-    - [@pixiv/three-vrm](https://github.com/pixiv/three-vrm)
-
-
-## デモ
-
-Glitchでデモを公開しています。
-
-[https://chatvrm.glitch.me](https://chatvrm.glitch.me)
+ChatVRMをベースにしたAIVTuberのデモアプリです。ブラウザで簡単にキャラクターと会話ができます。
 
 ## 実行
-ローカル環境で実行する場合はこのリポジトリをクローンするか、ダウンロードしてください。
+
+### 前提条件
+
+- [VOICEVOX](https://voicevox.hiroshiba.jp/)のエンジンがインストールされていること
+- Python がインストールされていること
+- Node.js がインストールされていること
+
+@Harxxki の動作環境は下記です。
+
+- macOS Ventura 13.0.1（22A400）
+- Python 3.11.0
+- Node.js 18.13.0
+
+### VOICEVOXの起動
+
+下記からエンジン本体をダウンロード&解凍し、適当なディレクトリに保存してください。
+
+https://github.com/VOICEVOX/voicevox_engine/releases
+
+解凍後、以下のコマンドで起動します。
+
+```
+# Macの場合
+cd (エンジン格納先)/mac
+./run.sh --use_gpu
+# Windowsの場合
+cd (エンジン格納先)\windows-nvidia
+run.exe --use_gpu
+```
+
+参考: https://note.com/__olender/n/n49f1d07c2c7d
+
+### フロントエンドの起動
+
+このリポジトリをクローンするか、ダウンロードしてください。
 
 ```bash
-git clone git@github.com:pixiv/ChatVRM.git
+git clone git@github.com:worldmakerinc/chatVRM-aituber-demo.git
 ```
 
 必要なパッケージをインストールしてください。
+
 ```bash
 npm install
 ```
 
 パッケージのインストールが完了した後、以下のコマンドで開発用のWebサーバーを起動します。
+
 ```bash
 npm run dev
 ```
 
 実行後、以下のURLにアクセスして動作を確認して下さい。
 
-[http://localhost:3000](http://localhost:3000) 
-
-
----
-
-## ChatGPT API
-
-ChatVRMでは返答文の生成にChatGPT APIを使用しています。
-
-ChatGPT APIの仕様や利用規約については以下のリンクや公式サイトをご確認ください。
-
-- [https://platform.openai.com/docs/api-reference/chat](https://platform.openai.com/docs/api-reference/chat)
-- [https://openai.com/policies/api-data-usage-policies](https://openai.com/policies/api-data-usage-policies)
-
-
-## Koeiromap API
-ChatVRMでは返答文の音声読み上げにKoemotionのKoeiromap APIを使用しています。
-
-Koeiromap APIの仕様や利用規約については以下のリンクや公式サイトをご確認ください。
-
-- [https://koemotion.rinna.co.jp/](https://koemotion.rinna.co.jp/)
+[http://localhost:3000](http://localhost:3000)
