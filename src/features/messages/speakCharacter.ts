@@ -1,13 +1,15 @@
-import { wait } from "@/utils/wait";
-import { synthesizeVoiceApi } from "./synthesizeVoice";
-import { Viewer } from "../vrmViewer/viewer";
-import { Screenplay } from "./messages";
-import { Talk } from "./messages";
+import { wait } from '@/utils/wait'
+import { Viewer } from '../vrmViewer/viewer'
+import { Screenplay, Talk } from './messages'
+import { synthesizeVoiceApi } from './synthesizeVoice'
 
 const createSpeakCharacter = () => {
-  const audioContext = new AudioContext()
+  let audioContext: AudioContext | null = null
 
   async function playWavAudio(arrayBuffer) {
+    if (!audioContext) {
+      audioContext = new AudioContext()
+    }
     const audioBuffer = await audioContext.decodeAudioData(arrayBuffer)
     const source = audioContext.createBufferSource()
     source.buffer = audioBuffer
@@ -54,7 +56,7 @@ const createSpeakCharacter = () => {
   }
 }
 
-export const speakCharacter = createSpeakCharacter();
+export const speakCharacter = createSpeakCharacter()
 
 export const fetchAudio = async (
   talk: Talk,
