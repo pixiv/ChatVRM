@@ -1,5 +1,6 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import VrmViewer from "@/components/vrmViewer";
+import GifViewer from "@/components/gifViewer";
 import { ViewerContext } from "@/features/vrmViewer/viewerContext";
 import {
   Message,
@@ -185,7 +186,7 @@ export default function Home() {
   );
 
   return (
-    <div className={"font-M_PLUS_2"}>
+    <div className={'font-M_PLUS_2'}>
       <Meta />
       <Introduction
         openAiKey={openAiKey}
@@ -193,7 +194,8 @@ export default function Home() {
         onChangeAiKey={setOpenAiKey}
         onChangeKoeiromapKey={setKoeiromapKey}
       />
-      <VrmViewer />
+      <GifViewer imagePath="images/avatar_00.gif" />
+      {/* <VrmViewer /> */}
       <MessageInputContainer
         isChatProcessing={chatProcessing}
         onChatProcessStart={handleSendChat}
@@ -215,5 +217,5 @@ export default function Home() {
       />
       <GitHubLink />
     </div>
-  );
+  )
 }
