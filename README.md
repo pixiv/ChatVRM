@@ -6,7 +6,6 @@ ChatVRMをベースにしたAIVTuberのデモアプリです。ブラウザで�
 
 ### 前提条件
 
-- [VOICEVOX](https://voicevox.hiroshiba.jp/)のエンジンがインストールされていること
 - Node.js がインストールされていること
 
 @Harxxki の動作環境は下記です。
