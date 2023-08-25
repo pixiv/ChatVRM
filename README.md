@@ -7,13 +7,11 @@ ChatVRMをベースにしたAIVTuberのデモアプリです。ブラウザで�
 ### 前提条件
 
 - [VOICEVOX](https://voicevox.hiroshiba.jp/)のエンジンがインストールされていること
-- Python がインストールされていること
 - Node.js がインストールされていること
 
 @Harxxki の動作環境は下記です。
 
 - macOS Ventura 13.0.1（22A400）
-- Python 3.11.0
 - Node.js 18.13.0
 
 ### VOICEVOXの起動
