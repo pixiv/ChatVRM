@@ -1,7 +1,7 @@
 import { Character, characters } from '@/features/character/character'
 import { KoeiroParam } from '@/features/constants/koeiroParam'
 import { Message } from '@/features/messages/messages'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IconButton } from './iconButton'
 import { Link } from './link'
 import { TextButton } from './textButton'
@@ -50,6 +50,17 @@ export const Settings = ({
     setCharacter(char)
     setIsOpen(false)
   }
+
+
+  const [voiceId, setVoiceId] = useState<string>('0')
+  useEffect(() => {
+    if (window.localStorage.getItem('chatVRMParams')) {
+      const params = JSON.parse(
+        window.localStorage.getItem('chatVRMParams') as string
+      )
+      setVoiceId(params.voiceId)
+    }
+  }, [selectedCharacter])
 
   return (
     <div className="absolute z-40 w-full h-full bg-white/80 backdrop-blur ">
@@ -147,7 +158,7 @@ export const Settings = ({
               ローカルで起動したVOICEBOX
               Engineを使用しています。プリセットはキャラクターによって自動で設定されます。
             </div>
-            <div>現在のプリセット: {'TODO: This'}</div>
+            <div>現在のプリセットID: {voiceId}</div>
           </div>
           {chatLog.length > 0 && (
             <div className="my-40">

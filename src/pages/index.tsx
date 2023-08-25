@@ -3,7 +3,13 @@ import { Introduction } from '@/components/introduction'
 import { Menu } from '@/components/menu'
 import { MessageInputContainer } from '@/components/messageInputContainer'
 import { Meta } from '@/components/meta'
-import { Character, toImageUrl } from '@/features/character/character'
+import {
+  Character,
+  initialState,
+  toImageUrl,
+  toSystemPrompt,
+  toVoiceId,
+} from '@/features/character/character'
 import { getChatResponseStream } from '@/features/chat/openAiChat'
 import { DEFAULT_PARAM, KoeiroParam } from '@/features/constants/koeiroParam'
 import { SYSTEM_PROMPT } from '@/features/constants/systemPromptConstants'
@@ -26,7 +32,13 @@ export default function Home() {
   const [chatProcessing, setChatProcessing] = useState(false)
   const [chatLog, setChatLog] = useState<Message[]>([])
   const [assistantMessage, setAssistantMessage] = useState('')
-  const [character, setCharacter] = useState<Character>('hoge')
+  const [character, setCharacter] = useState<Character>(initialState)
+  const [voiceId, setVoiceId] = useState<string>('1')
+
+  useEffect(() => {
+    setSystemPrompt(toSystemPrompt(character))
+    setVoiceId(toVoiceId(character))
+  }, [character])
 
   useEffect(() => {
     if (window.localStorage.getItem('chatVRMParams')) {
@@ -36,6 +48,7 @@ export default function Home() {
       setSystemPrompt(params.systemPrompt)
       setKoeiroParam(params.koeiroParam)
       setChatLog(params.chatLog)
+      setVoiceId(params.voiceId)
     }
   }, [])
 
@@ -43,10 +56,10 @@ export default function Home() {
     process.nextTick(() =>
       window.localStorage.setItem(
         'chatVRMParams',
-        JSON.stringify({ systemPrompt, koeiroParam, chatLog })
+        JSON.stringify({ systemPrompt, koeiroParam, chatLog, voiceId })
       )
     )
-  }, [systemPrompt, koeiroParam, chatLog])
+  }, [systemPrompt, koeiroParam, chatLog, voiceId])
 
   const handleChangeChatLog = useCallback(
     (targetIndex: number, text: string) => {

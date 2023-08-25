@@ -1,6 +1,7 @@
-import { reduceTalkStyle } from "@/utils/reduceTalkStyle";
-import { koeiromapV0 } from "../koeiromap/koeiromap";
-import { TalkStyle } from "../messages/messages";
+import { reduceTalkStyle } from '@/utils/reduceTalkStyle'
+import { useState } from 'react'
+import { koeiromapV0 } from '../koeiromap/koeiromap'
+import { TalkStyle } from '../messages/messages'
 
 export async function synthesizeVoice(
   message: string,
@@ -8,8 +9,8 @@ export async function synthesizeVoice(
   speakerY: number,
   style: TalkStyle
 ) {
-  const koeiroRes = await koeiromapV0(message, speakerX, speakerY, style);
-  return { audio: koeiroRes.audio };
+  const koeiroRes = await koeiromapV0(message, speakerX, speakerY, style)
+  return { audio: koeiroRes.audio }
 }
 
 export async function synthesizeVoiceApi(
@@ -20,11 +21,20 @@ export async function synthesizeVoiceApi(
   apiKey: string
 ): Promise<ArrayBuffer> {
   const reducedStyle = reduceTalkStyle(style)
+  let speaker = 1;
+
+  if (window.localStorage.getItem('chatVRMParams')) {
+    const params = JSON.parse(
+      window.localStorage.getItem('chatVRMParams') as string
+    )
+    speaker = params.voiceId
+  }
 
   const body = {
     message: message,
     speakerX: speakerX,
     speakerY: speakerY,
+    speaker: speaker,
     style: reducedStyle,
     apiKey: apiKey,
   }
@@ -43,4 +53,3 @@ export async function synthesizeVoiceApi(
 
   return res.arrayBuffer()
 }
-

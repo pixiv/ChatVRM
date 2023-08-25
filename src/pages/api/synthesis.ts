@@ -16,11 +16,12 @@ export default async function handler(
   }
 
   const message = req.body.message.trim()
+  const speaker = req.body.speaker
 
   try {
     const audioQueryUrl = new URL(`http://${host}:${port}/audio_query`)
     audioQueryUrl.searchParams.append('text', message)
-    audioQueryUrl.searchParams.append('speaker', '1')
+    audioQueryUrl.searchParams.append('speaker', speaker)
     let queryData
 
     for (let query_i = 0; query_i < maxRetry; query_i++) {
@@ -48,7 +49,7 @@ export default async function handler(
     let wavData
 
     const synthUrl = new URL(`http://${host}:${port}/synthesis`)
-    synthUrl.searchParams.append('speaker', '1')
+    synthUrl.searchParams.append('speaker', speaker)
 
     for (let synth_i = 0; synth_i < maxRetry; synth_i++) {
       const synthResponse = await fetch(synthUrl.toString(), {
