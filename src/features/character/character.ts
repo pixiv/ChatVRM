@@ -10,3 +10,12 @@ export const toImageUrl = (character: Character) => {
       return 'images/avatar_01.gif'
   }
 }
+
+export const toSystemPrompt = (character: Character) => {
+  switch (character) {
+    case 'hoge':
+      return 'hoge'
+    case 'fuga':
+      return 'fuga'
+  }
+}
