@@ -18,9 +18,8 @@ export async function synthesizeVoiceApi(
   speakerY: number,
   style: TalkStyle,
   apiKey: string
-) {
-  // Free向けに感情を制限する
-  const reducedStyle = reduceTalkStyle(style);
+): Promise<ArrayBuffer> {
+  const reducedStyle = reduceTalkStyle(style)
 
   const body = {
     message: message,
@@ -28,16 +27,20 @@ export async function synthesizeVoiceApi(
     speakerY: speakerY,
     style: reducedStyle,
     apiKey: apiKey,
-  };
+  }
 
-  const res = await fetch("/api/tts", {
-    method: "POST",
+  const res = await fetch('/api/synthesis', {
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(body),
-  });
-  const data = (await res.json()) as any;
+  })
 
-  return { audio: data.audio };
+  if (!res.ok) {
+    throw new Error('Failed to synthesize audio.')
+  }
+
+  return res.arrayBuffer()
 }
+
