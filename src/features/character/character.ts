@@ -1,40 +1,81 @@
 import {
-  SYSTEM_PROMPT,
+  SYSTEM_PROMPT_ANYA_FORGER,
+  SYSTEM_PROMPT_DORAEMON,
+  SYSTEM_PROMPT_EDOGAWA_CONAN,
+  SYSTEM_PROMPT_MONKEY_D_LUFFY,
+  SYSTEM_PROMPT_SON_GOKU,
   SYSTEM_PROMPT_ZUNDAMON,
 } from '../constants/systemPromptConstants'
 
-export type Character = 'hoge' | 'ずんだもん'
+export type Character =
+  | 'ずんだもん'
+  | 'アーニャ・フォージャー'
+  | 'ドラえもん'
+  | '江戸川コナン'
+  | 'モンキー・D・ルフィ'
+  | '孫悟空'
 
-export const characters: Character[] = ['hoge', 'ずんだもん']
+export const characters: Character[] = [
+  'ずんだもん',
+  'アーニャ・フォージャー',
+  'ドラえもん',
+  '江戸川コナン',
+  'モンキー・D・ルフィ',
+  '孫悟空',
+]
 
 export const toImageUrl = (character: Character) => {
   switch (character) {
-    case 'hoge':
-      return 'images/avatar_00.gif'
     case 'ずんだもん':
-      return 'images/ずんだもん.gif'
+      return 'images/zundamon.gif'
+    case 'アーニャ・フォージャー':
+      return 'images/anya-forger.gif'
+    case 'ドラえもん':
+      return 'images/doraemon.gif'
+    case '江戸川コナン':
+      return 'images/edogawa-conan.gif'
+    case 'モンキー・D・ルフィ':
+      return 'images/monkey-d-luffy.gif'
+    case '孫悟空':
+      return 'images/son-goku.gif'
   }
 }
 
 export const toSystemPrompt = (character: Character) => {
   switch (character) {
-    case 'hoge':
-      return SYSTEM_PROMPT
     case 'ずんだもん':
       return SYSTEM_PROMPT_ZUNDAMON
+    case 'アーニャ・フォージャー':
+      return SYSTEM_PROMPT_ANYA_FORGER
+    case 'ドラえもん':
+      return SYSTEM_PROMPT_DORAEMON
+    case '江戸川コナン':
+      return SYSTEM_PROMPT_EDOGAWA_CONAN
+    case 'モンキー・D・ルフィ':
+      return SYSTEM_PROMPT_MONKEY_D_LUFFY
+    case '孫悟空':
+      return SYSTEM_PROMPT_SON_GOKU
   }
 }
 
 export const toVoiceId = (character: Character) => {
   switch (character) {
-    case 'hoge':
-      return '1'
     case 'ずんだもん':
       return '3'
+    case 'アーニャ・フォージャー':
+      return '54'
+    case 'ドラえもん':
+      return '52'
+    case '江戸川コナン':
+      return '55'
+    case 'モンキー・D・ルフィ':
+      return '32'
+    case '孫悟空':
+      return '51'
   }
 }
 
-export const initialState: Character = 'hoge'
+export const initialState: Character = 'ずんだもん'
 
 const speakers = [
   {

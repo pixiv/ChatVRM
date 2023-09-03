@@ -76,12 +76,25 @@ export default function Home() {
    * 文ごとに音声を直列でリクエストしながら再生する
    */
   const handleSpeakAi = useCallback(
-    async (
+    (
       screenplay: Screenplay,
       onStart?: () => void,
       onEnd?: () => void
-    ) => {
-      speakCharacter(screenplay, viewer, koeiromapKey, onStart, onEnd)
+    ): Promise<void> => {
+      return new Promise((resolve, reject) => {
+        speakCharacter(
+          screenplay,
+          viewer,
+          koeiromapKey,
+          () => {
+            if (onStart) onStart()
+          },
+          () => {
+            if (onEnd) onEnd()
+            resolve() // 音声再生が完了したらresolveを呼び出す
+          }
+        )
+      })
     },
     [viewer, koeiromapKey]
   )
@@ -172,7 +185,7 @@ export default function Home() {
 
             // 文ごとに音声を生成 & 再生、返答を表示
             const currentAssistantMessage = sentences.join(' ')
-            handleSpeakAi(aiTalks[0], () => {
+            await handleSpeakAi(aiTalks[0], () => {
               setAssistantMessage(currentAssistantMessage)
             })
           }
