@@ -6,15 +6,18 @@ import { synthesizeVoiceApi } from './synthesizeVoice'
 const createSpeakCharacter = () => {
   let audioContext: AudioContext | null = null
 
-  async function playWavAudio(arrayBuffer) {
-    if (!audioContext) {
-      audioContext = new AudioContext()
-    }
-    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer)
-    const source = audioContext.createBufferSource()
-    source.buffer = audioBuffer
-    source.connect(audioContext.destination)
-    source.start()
+  async function playWavAudio(arrayBuffer): Promise<void> {
+    return new Promise(async (resolve, reject) => {
+      if (!audioContext) {
+        audioContext = new AudioContext()
+      }
+      const audioBuffer = await audioContext.decodeAudioData(arrayBuffer)
+      const source = audioContext.createBufferSource()
+      source.buffer = audioBuffer
+      source.connect(audioContext.destination)
+      source.onended = (event) => resolve() // 音声再生が完了したときにresolveを呼び出す
+      source.start()
+    })
   }
 
   let lastTime = 0
@@ -43,10 +46,10 @@ const createSpeakCharacter = () => {
 
     prevFetchPromise = fetchPromise
     prevSpeakPromise = Promise.all([fetchPromise, prevSpeakPromise]).then(
-      ([audioBuffer]) => {
+      async ([audioBuffer]) => {
         onStart?.()
         if (audioBuffer) {
-          playWavAudio(audioBuffer)
+          await playWavAudio(audioBuffer)
         }
       }
     )
