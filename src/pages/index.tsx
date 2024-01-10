@@ -32,9 +32,9 @@ export default function Home() {
       const params = JSON.parse(
         window.localStorage.getItem("chatVRMParams") as string
       );
-      setSystemPrompt(params.systemPrompt);
-      setKoeiroParam(params.koeiroParam);
-      setChatLog(params.chatLog);
+      setSystemPrompt(params.systemPrompt ?? SYSTEM_PROMPT);
+      setKoeiroParam(params.koeiroParam ?? DEFAULT_PARAM);
+      setChatLog(params.chatLog ?? []);
     }
   }, []);
 
