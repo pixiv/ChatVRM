@@ -38,6 +38,13 @@ export default function Home() {
       setKoeiroParam(params.koeiroParam ?? DEFAULT_PARAM);
       setChatLog(params.chatLog ?? []);
     }
+
+    // BGMのaudioタグがあった場合は音量を調整
+    const audio = document.getElementById('audio01') as HTMLAudioElement;
+    if (audio) {
+      audio.volume = 0.3;
+    }
+
   }, []);
 
   useEffect(() => {

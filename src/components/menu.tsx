@@ -43,6 +43,7 @@ export const Menu = ({
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [bgmPlayed, setBGMPlayed] = useState(false);
+  
 
   const handleChangeSystemPrompt = useCallback(
     (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -99,27 +100,17 @@ export const Menu = ({
     },
     [viewer]
   );
-
-  // BGM再生
-  const playBGM01 = () => {
-    const audio = new Audio('/class-coffee.mp3');
-    audio.loop = true; // ループ再生
-    audio.volume = 0.5; // 音量50%
-    if (!bgmPlayed) {
-      audio.play();
-      setBGMPlayed(true); // BGMが再生されたフラグを設定
-    }
-  };
-
+  
   return (
     <>
       <div className="absolute z-10 m-24">
+      <audio src="/class-coffee.mp3" id="audio01" volume="0.5" className="margin-bottom10" controls loop />
         <div className="grid grid-flow-col gap-[8px]">
           <IconButton
             iconName="24/Menu"
             label="設定"
             isProcessing={false}
-            onClick={() => { playBGM01(); setShowSettings(true); }}
+            onClick={() => { setShowSettings(true); }}
           ></IconButton>
           {showChatLog ? (
             <IconButton

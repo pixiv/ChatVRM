@@ -100,3 +100,8 @@ textarea::-webkit-scrollbar-thumb {
 background-color: darkgrey;
 border-radius: 50px;
 }
+
+/* レイアウト調整 */
+.margin-bottom10{
+  margin-bottom: 10px;
+}
