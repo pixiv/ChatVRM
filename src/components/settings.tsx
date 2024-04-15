@@ -56,10 +56,10 @@ export const Settings = ({
         <div className="text-text1 max-w-3xl mx-auto px-24 py-64 ">
           <div className="my-24 typography-32 font-bold">設定</div>
           <div className="my-24">
-            <div className="my-16 typography-20 font-bold">OpenAI API キー</div>
+            <div className="my-16 typography-20 font-bold">OpenAI APIキー</div>
             <input
               className="text-ellipsis px-16 py-8 w-col-span-2 bg-surface1 hover:bg-surface1-hover rounded-8"
-              type="text"
+              type="password"
               placeholder="sk-..."
               value={openAiKey}
               onChange={onChangeAiKey}
@@ -105,6 +105,7 @@ export const Settings = ({
           </div>
           <div className="my-40">
             <div className="my-16 typography-20 font-bold">声の調整</div>
+            {/*
             <div>
               KoemotionのKoeiromap APIを使用しています。詳しくは
               <Link
@@ -123,6 +124,7 @@ export const Settings = ({
                 onChange={onChangeKoeiromapKey}
               />
             </div>
+            */}
 
             <div className="mt-16 font-bold">プリセット</div>
             <div className="my-8 grid grid-cols-2 gap-[8px]">

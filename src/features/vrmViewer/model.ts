@@ -78,6 +78,13 @@ export class Model {
     });
   }
 
+  public async happy() {
+    this.emoteController?.playEmotion("happy");
+  }
+  public async neutral() {
+    this.emoteController?.playEmotion("neutral");
+  }
+
   public update(delta: number): void {
     if (this._lipSync) {
       const { volume } = this._lipSync.update();

@@ -41,6 +41,7 @@ const createSpeakCharacter = () => {
     );
     prevSpeakPromise.then(() => {
       onComplete?.();
+      viewer.model?.neutral(); //表情を普段に戻す
     });
   };
 };

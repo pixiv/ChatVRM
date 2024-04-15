@@ -47,3 +47,56 @@ body {
     display: none;
   }
 }
+
+/** 追記 **/
+.bg-base{
+  background: #eee;
+}
+
+.bg-primary {
+  background: #76cba3;
+}
+
+.disabled\:bg-secondary-disabled:disabled,
+.disabled\:bg-primary-disabled:disabled{
+  background: #ccc !important;
+}
+
+.hover\:bg-secondary-hover:hover,
+.hover\:bg-primary-hover:hover{
+  background: #52ae83 !important;
+}
+
+.bg-secondary{
+  background: #76cba3;
+}
+
+.text-primary,
+.text-secondary{
+  color: #333;
+}
+
+textarea{
+  padding: 10px;
+  height: 40px;
+  overflow: auto;
+  line-height: 20px !important;
+  resize: none;
+  background: #f7f7f7 !important;
+}
+
+textarea::-webkit-scrollbar {
+  width: 0.5em;
+  border-radius: 50%;
+}
+textarea:focus {
+  outline: none;
+  background: #fff !important;
+}
+textarea::-webkit-scrollbar-track {
+}
+
+textarea::-webkit-scrollbar-thumb {
+background-color: darkgrey;
+border-radius: 50px;
+}

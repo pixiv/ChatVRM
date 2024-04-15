@@ -29,7 +29,7 @@ export async function synthesizeVoiceApi(
     style: reducedStyle,
     apiKey: apiKey,
   };
-
+  /*
   const res = await fetch("/api/tts", {
     method: "POST",
     headers: {
@@ -38,6 +38,51 @@ export async function synthesizeVoiceApi(
     body: JSON.stringify(body),
   });
   const data = (await res.json()) as any;
+  */
 
-  return { audio: data.audio };
+  // voicevox 8:春日部つむぎ
+  //const voice01 = 'https://deprecatedapis.tts.quest/v2/voicevox/audio/?key=D-3-40K43_9-e68&speaker=8&pitch=0&intonationScale=1&speed=1&text='+message;
+
+  const text = message;
+  const speaker = 18;
+  const host = 50025;
+  const res = await fetch(`http://localhost:${host}/audio_query?text=${text}&speaker=${speaker}`, {
+      method: "POST",
+      headers: {
+          'Content-Type': 'application/json'
+      }
+
+  })
+
+  const query = await res.json();
+  //console.log(query);
+
+  const sound_row = await fetch(`http://localhost:${host}/synthesis?speaker=${speaker}&enable_interrogative_upspeak=true`, {
+    method: "POST",
+    headers: { 
+      'Content-Type': 'application/json',
+      //'accept': 'audio/wav',
+      //'response-Type': 'blob'
+    },
+    body: JSON.stringify(query)
+  })
+  //console.log(sound_row.body);
+
+  const blob = await sound_row.blob();
+
+  const audioUrl = URL.createObjectURL(blob);
+  const audio = new Audio(audioUrl);
+  //audio.play();
+
+  /*
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'audio01.wav';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  */
+  return { audio: audioUrl };
 }

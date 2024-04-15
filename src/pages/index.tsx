@@ -20,7 +20,9 @@ export default function Home() {
   const { viewer } = useContext(ViewerContext);
 
   const [systemPrompt, setSystemPrompt] = useState(SYSTEM_PROMPT);
-  const [openAiKey, setOpenAiKey] = useState("");
+  const [openAiKey, setOpenAiKey] = useState("sk-ここにOpenAIのキーが入ります。");
+  // OpenAIキーを入れる。
+
   const [koeiromapKey, setKoeiromapKey] = useState("");
   const [koeiroParam, setKoeiroParam] = useState<KoeiroParam>(DEFAULT_PARAM);
   const [chatProcessing, setChatProcessing] = useState(false);
@@ -154,8 +156,10 @@ export default function Home() {
               continue;
             }
 
-            const aiText = `${tag} ${sentence}`;
+            //console.log(sentence.replace(/\s/g, ''));
+            const aiText = `${tag} ${sentence.replace(/\s/g, '')}`; // 余白を整理
             const aiTalks = textsToScreenplay([aiText], koeiroParam);
+
             aiTextLog += aiText;
 
             // 文ごとに音声を生成 & 再生、返答を表示
