@@ -5,6 +5,9 @@ ChatVRMは、技術共有およびデモンストレーションを主目的と�
 本レポジトリは、2024-07-18時点のコードを持ってアーカイブされました。
 今後、ChatVRMに対して変更を加えたい場合、フォークを行って開発いただけますと幸いです。
 
+また、関連プロジェクトとして [local-chat-vrm](https://github.com/pixiv/local-chat-vrm) も公開しています。
+local-chat-vrmは返答文の生成と読み上げ音声の生成をブラウザ上で実行できるアプリケーションです。ただし英語での応答のみに対応しており、日本語はご利用いただけません。
+
 ---
 
 ChatVRMはブラウザで簡単に3Dキャラクターと会話ができるデモアプリケーションです。
@@ -21,13 +24,6 @@ ChatVRMの各機能は主に以下の技術を使用しています。
     - [Koemotion/Koeiromap API](https://koemotion.rinna.co.jp/)
 - 3Dキャラクターの表示
     - [@pixiv/three-vrm](https://github.com/pixiv/three-vrm)
-
-
-## デモ
-
-Glitchでデモを公開しています。
-
-[https://chatvrm.glitch.me](https://chatvrm.glitch.me)
 
 ## 実行
 ローカル環境で実行する場合はこのリポジトリをクローンするか、ダウンロードしてください。
